@@ -32,6 +32,13 @@
 	// Filter tasks by persona
 	let filteredTasks = $derived(data.tasks.filter((t) => t.persona === currentPersona));
 
+	// Auto-select first task when tasks load or persona changes
+	$effect(() => {
+		if (filteredTasks.length > 0 && !selectedTask) {
+			handleSelectTask(filteredTasks[0]);
+		}
+	});
+
 	function handlePersonaChange(persona: Persona) {
 		currentPersona = persona;
 		selectedTask = null;
