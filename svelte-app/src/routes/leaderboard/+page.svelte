@@ -81,12 +81,12 @@
 			{#each personas as persona}
 				<button
 					onclick={() => handlePersonaFilter(persona)}
-					class="px-4 py-2 rounded-lg text-sm font-medium transition-all {data.selectedPersona ===
+					class="px-4 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2 {data.selectedPersona ===
 					persona
 						? 'bg-primary text-white'
 						: 'bg-gray-100 text-muted hover:bg-gray-200'}"
 				>
-					{PERSONA_INFO[persona].icon}
+					<img src={PERSONA_INFO[persona].image} alt="" class="w-5 h-5 rounded-full object-cover" />
 					{PERSONA_INFO[persona].label}
 				</button>
 			{/each}

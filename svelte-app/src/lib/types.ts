@@ -22,19 +22,22 @@ export interface ModelResponse {
 	eloRating: number;
 }
 
-export const PERSONA_INFO: Record<Persona, { icon: string; label: string; description: string }> = {
+export const PERSONA_INFO: Record<Persona, { icon: string; image: string; label: string; description: string }> = {
 	educator: {
 		icon: '👩‍🏫',
+		image: '/educator.jpg',
 		label: 'Educator',
 		description: 'Tasks for teachers, curriculum designers, and education professionals'
 	},
 	developer: {
 		icon: '💻',
+		image: '/developer.jpg',
 		label: 'Developer',
 		description: 'Technical tasks for software engineers and developers'
 	},
 	policymaker: {
 		icon: '🏛️',
+		image: '/policy_maker.jpg',
 		label: 'Policymaker',
 		description: 'Policy and governance tasks for administrators and decision-makers'
 	}

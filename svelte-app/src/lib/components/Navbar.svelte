@@ -65,12 +65,13 @@
 						{#each personas as persona}
 							<button
 								onclick={() => handlePersonaClick(persona)}
-								class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors {currentPersona ===
+								class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors flex items-center gap-2 {currentPersona ===
 								persona
 									? 'bg-white text-dark shadow-sm'
 									: 'text-muted hover:text-dark'}"
 							>
-								{PERSONA_INFO[persona].icon} {PERSONA_INFO[persona].label}
+								<img src={PERSONA_INFO[persona].image} alt="" class="w-4 h-4 rounded-full object-cover" />
+								{PERSONA_INFO[persona].label}
 							</button>
 						{/each}
 					</div>

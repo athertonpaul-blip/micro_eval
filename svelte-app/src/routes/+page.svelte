@@ -5,12 +5,6 @@
 
 	const personas: Persona[] = ['educator', 'developer', 'policymaker'];
 
-	const personaImages: Record<Persona, string> = {
-		educator: '/educator.jpg',
-		developer: '/developer.jpg',
-		policymaker: '/policy_maker.jpg'
-	};
-
 	function selectPersona(persona: Persona) {
 		goto(`/compare?persona=${persona}`);
 	}
@@ -73,7 +67,7 @@
 			>
 				<div class="w-16 h-16 mb-4 rounded-full overflow-hidden">
 					<img
-						src={personaImages[persona]}
+						src={PERSONA_INFO[persona].image}
 						alt={PERSONA_INFO[persona].label}
 						class="w-full h-full object-cover"
 					/>
