@@ -27,6 +27,9 @@
 	let expandedA = $state(false);
 	let expandedB = $state(false);
 
+	// Track expanded state for compare mode (multiple models)
+	let expandedModels = $state<Set<string>>(new Set());
+
 	// Get all available models from the task's responses
 	let availableModels = $derived(task ? (Object.keys(task.responses) as string[]) : []);
 
@@ -37,10 +40,20 @@
 	$effect(() => {
 		if (task) {
 			visibleModels = new Set(availableModels);
+			expandedModels = new Set();
 			voteResult = null;
 			selectRandomPair();
 		}
 	});
+
+	function toggleExpanded(modelKey: string) {
+		if (expandedModels.has(modelKey)) {
+			expandedModels.delete(modelKey);
+		} else {
+			expandedModels.add(modelKey);
+		}
+		expandedModels = new Set(expandedModels);
+	}
 
 	// Re-select random pair when switching to voting mode
 	$effect(() => {
@@ -399,6 +412,7 @@
 					{#each displayedModels as modelKey}
 						{@const model = getModelInfo(modelKey)}
 						{@const content = task.responses[modelKey] || ''}
+						{@const isExpanded = expandedModels.has(modelKey)}
 						<div class="bg-white rounded-lg shadow-sm border-2 border-gray-200">
 							<!-- Model Header -->
 							<div
@@ -415,13 +429,33 @@
 							</div>
 
 							<!-- Response Content -->
-							<div class="p-4 prose prose-sm max-w-none">
-								{#if content}
-									{@html renderMarkdown(content)}
-								{:else}
-									<p class="text-gray-500 italic">No response available</p>
+							<div class="relative">
+								<div
+									class="p-4 prose prose-sm max-w-none overflow-hidden transition-all duration-300"
+									style={isExpanded ? 'max-height: none;' : 'max-height: 200px;'}
+								>
+									{#if content}
+										{@html renderMarkdown(content)}
+									{:else}
+										<p class="text-gray-500 italic">No response available</p>
+									{/if}
+								</div>
+								{#if !isExpanded && content}
+									<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
 								{/if}
 							</div>
+
+							<!-- Expand/Collapse button -->
+							{#if content}
+								<div class="px-4 py-2 border-t border-gray-100">
+									<button
+										onclick={() => toggleExpanded(modelKey)}
+										class="text-sm text-gray-500 hover:text-gray-700"
+									>
+										{isExpanded ? 'Show less' : 'Show more'}
+									</button>
+								</div>
+							{/if}
 						</div>
 					{/each}
 				</div>
