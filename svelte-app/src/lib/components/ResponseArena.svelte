@@ -23,6 +23,10 @@
 	let modelA = $state<string | null>(null);
 	let modelB = $state<string | null>(null);
 
+	// Track expanded state for each response card
+	let expandedA = $state(false);
+	let expandedB = $state(false);
+
 	// Get all available models from the task's responses
 	let availableModels = $derived(task ? (Object.keys(task.responses) as string[]) : []);
 
@@ -52,6 +56,9 @@
 		const shuffled = [...availableModels].sort(() => Math.random() - 0.5);
 		modelA = shuffled[0];
 		modelB = shuffled[1];
+		// Reset expanded states for new matchup
+		expandedA = false;
+		expandedB = false;
 	}
 
 	// Filter to only show selected models (for compare mode)
@@ -190,7 +197,7 @@
 				<!-- Voting Instructions -->
 				<div class="mb-6 text-center">
 					<p class="text-gray-500 text-sm">
-						Which response is better? Click to vote.
+						Which response is better? Expand to read more, then vote.
 					</p>
 				</div>
 			{/if}
@@ -200,13 +207,7 @@
 				<div class="grid grid-cols-2 gap-6">
 					<!-- Response A -->
 					<div
-						class="bg-white rounded-lg shadow-sm border-2 transition-all {!voteResult && !isVoting
-							? 'border-gray-200 hover:border-blue-400 cursor-pointer hover:shadow-md'
-							: 'border-gray-200'} {voteResult?.selectedSide === 'A' ? 'ring-2 ring-green-400 border-green-400' : ''}"
-						onclick={() => !voteResult && !isVoting && handleVote('A')}
-						onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && !voteResult && !isVoting && handleVote('A')}
-						role="button"
-						tabindex={!voteResult && !isVoting ? 0 : -1}
+						class="bg-white rounded-lg shadow-sm border-2 transition-all {voteResult?.selectedSide === 'A' ? 'ring-2 ring-green-400 border-green-400' : 'border-gray-200'}"
 					>
 						<!-- Header -->
 						<div
@@ -227,29 +228,46 @@
 									<span class="font-semibold text-gray-900">Response A</span>
 								{/if}
 							</div>
-							{#if !voteResult && !isVoting}
-								<span class="text-blue-600 text-sm font-medium">Click to vote</span>
-							{/if}
 							{#if voteResult?.selectedSide === 'A'}
 								<span class="text-green-600 font-medium">Winner</span>
 							{/if}
 						</div>
 
 						<!-- Content -->
-						<div class="p-4 prose prose-sm max-w-none max-h-[60vh] overflow-y-auto">
-							{@html renderMarkdown(task.responses[modelA] || '')}
+						<div class="relative">
+							<div
+								class="p-4 prose prose-sm max-w-none overflow-hidden transition-all duration-300"
+								style={expandedA ? 'max-height: none;' : 'max-height: 200px;'}
+							>
+								{@html renderMarkdown(task.responses[modelA] || '')}
+							</div>
+							{#if !expandedA}
+								<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+							{/if}
+						</div>
+
+						<!-- Expand/Collapse and Vote buttons -->
+						<div class="px-4 py-3 border-t border-gray-100 flex items-center justify-between">
+							<button
+								onclick={(e) => { e.stopPropagation(); expandedA = !expandedA; }}
+								class="text-sm text-gray-500 hover:text-gray-700"
+							>
+								{expandedA ? 'Show less' : 'Show more'}
+							</button>
+							{#if !voteResult && !isVoting}
+								<button
+									onclick={() => handleVote('A')}
+									class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+								>
+									Vote for A
+								</button>
+							{/if}
 						</div>
 					</div>
 
 					<!-- Response B -->
 					<div
-						class="bg-white rounded-lg shadow-sm border-2 transition-all {!voteResult && !isVoting
-							? 'border-gray-200 hover:border-orange-400 cursor-pointer hover:shadow-md'
-							: 'border-gray-200'} {voteResult?.selectedSide === 'B' ? 'ring-2 ring-green-400 border-green-400' : ''}"
-						onclick={() => !voteResult && !isVoting && handleVote('B')}
-						onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && !voteResult && !isVoting && handleVote('B')}
-						role="button"
-						tabindex={!voteResult && !isVoting ? 0 : -1}
+						class="bg-white rounded-lg shadow-sm border-2 transition-all {voteResult?.selectedSide === 'B' ? 'ring-2 ring-green-400 border-green-400' : 'border-gray-200'}"
 					>
 						<!-- Header -->
 						<div
@@ -270,17 +288,40 @@
 									<span class="font-semibold text-gray-900">Response B</span>
 								{/if}
 							</div>
-							{#if !voteResult && !isVoting}
-								<span class="text-orange-600 text-sm font-medium">Click to vote</span>
-							{/if}
 							{#if voteResult?.selectedSide === 'B'}
 								<span class="text-green-600 font-medium">Winner</span>
 							{/if}
 						</div>
 
 						<!-- Content -->
-						<div class="p-4 prose prose-sm max-w-none max-h-[60vh] overflow-y-auto">
-							{@html renderMarkdown(task.responses[modelB] || '')}
+						<div class="relative">
+							<div
+								class="p-4 prose prose-sm max-w-none overflow-hidden transition-all duration-300"
+								style={expandedB ? 'max-height: none;' : 'max-height: 200px;'}
+							>
+								{@html renderMarkdown(task.responses[modelB] || '')}
+							</div>
+							{#if !expandedB}
+								<div class="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-t from-white to-transparent pointer-events-none"></div>
+							{/if}
+						</div>
+
+						<!-- Expand/Collapse and Vote buttons -->
+						<div class="px-4 py-3 border-t border-gray-100 flex items-center justify-between">
+							<button
+								onclick={(e) => { e.stopPropagation(); expandedB = !expandedB; }}
+								class="text-sm text-gray-500 hover:text-gray-700"
+							>
+								{expandedB ? 'Show less' : 'Show more'}
+							</button>
+							{#if !voteResult && !isVoting}
+								<button
+									onclick={() => handleVote('B')}
+									class="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 transition-colors"
+								>
+									Vote for B
+								</button>
+							{/if}
 						</div>
 					</div>
 				</div>
