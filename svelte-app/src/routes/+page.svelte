@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-	import Navbar from '$lib/components/Navbar.svelte';
 	import type { Persona } from '$lib/types';
 	import { PERSONA_INFO } from '$lib/types';
 
@@ -15,34 +14,64 @@
 	<title>Micro Evals - AI Model Comparison for Education</title>
 </svelte:head>
 
-<Navbar />
+<!-- Hero Section with Background Image -->
+<section class="relative min-h-[600px] flex items-center justify-center overflow-hidden">
+	<!-- Background Image -->
+	<div
+		class="absolute inset-0 bg-cover bg-center bg-no-repeat"
+		style="background-image: url('/hero-bg.jpg');"
+	></div>
 
-<main class="max-w-6xl mx-auto px-4 py-16">
-	<!-- Hero Section -->
-	<div class="text-center mb-16">
-		<h1 class="text-4xl md:text-5xl font-bold text-dark mb-4">
+	<!-- Gradient Overlay -->
+	<div
+		class="absolute inset-0"
+		style="background: linear-gradient(244deg, rgba(33, 21, 1, 1) 8%, rgba(34, 21, 1, 0.59) 28%, rgba(33, 21, 1, 1) 74%);"
+	></div>
+
+	<!-- Navigation -->
+	<nav class="absolute top-0 left-0 right-0 px-6 py-4 z-10">
+		<div class="max-w-7xl mx-auto flex items-center justify-between">
+			<a href="https://fab-ai.org" class="text-white/90 hover:text-white text-sm font-medium transition-colors">
+				fab-ai.org
+			</a>
+			<div class="flex items-center gap-6">
+				<a href="/compare" class="text-white/80 hover:text-white transition-colors font-medium">
+					Compare
+				</a>
+				<a href="/leaderboard" class="text-white/80 hover:text-white transition-colors font-medium">
+					Leaderboard
+				</a>
+			</div>
+		</div>
+	</nav>
+
+	<!-- Hero Content -->
+	<div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+		<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
 			Compare AI Model Responses
 		</h1>
-		<p class="text-xl text-muted max-w-2xl mx-auto mb-8">
-			See how latest AI models handle real educational tasks. Choose your role to explore
-			relevant scenarios.
+		<p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-10">
+			See how the latest AI models handle real educational tasks. Choose your role to explore relevant scenarios.
 		</p>
-		<div class="flex items-center justify-center gap-4 text-sm text-muted">
-			<span class="flex items-center gap-1">
-				<span class="w-2 h-2 rounded-full bg-green-500"></span>
+		<div class="flex items-center justify-center gap-6 text-sm text-white/70">
+			<span class="flex items-center gap-2">
+				<span class="w-2 h-2 rounded-full bg-green-400"></span>
 				GPT-4o
 			</span>
-			<span class="flex items-center gap-1">
-				<span class="w-2 h-2 rounded-full bg-purple-500"></span>
+			<span class="flex items-center gap-2">
+				<span class="w-2 h-2 rounded-full bg-purple-400"></span>
 				Claude 3.5 Sonnet
 			</span>
-			<span class="flex items-center gap-1">
-				<span class="w-2 h-2 rounded-full bg-orange-500"></span>
+			<span class="flex items-center gap-2">
+				<span class="w-2 h-2 rounded-full bg-orange-400"></span>
 				Gemini 1.5 Pro
 			</span>
 		</div>
 	</div>
+</section>
 
+<!-- Main Content -->
+<main class="max-w-6xl mx-auto px-4 py-16">
 	<!-- Persona Cards -->
 	<div class="grid md:grid-cols-3 gap-6">
 		{#each personas as persona}
@@ -94,7 +123,7 @@
 </main>
 
 <!-- Footer -->
-<footer class="border-t border-gray-200 mt-16 py-8">
+<footer class="border-t border-gray-200 py-8">
 	<div class="max-w-6xl mx-auto px-4 text-center text-muted text-sm">
 		<p>Pre-computed responses for reliable, fast comparisons. No live API calls.</p>
 	</div>

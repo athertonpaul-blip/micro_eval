@@ -38,9 +38,15 @@
 <nav class="bg-white border-b border-gray-200 px-4 py-3">
 	<div class="max-w-7xl mx-auto flex items-center justify-between">
 		<!-- Logo/Home -->
-		<button onclick={handleHome} class="flex items-center gap-2 text-lg font-semibold text-dark hover:text-primary transition-colors">
-			<span>Micro Evals</span>
-		</button>
+		<div class="flex items-center gap-4">
+			<a href="https://fab-ai.org" class="text-sm text-muted hover:text-primary transition-colors">
+				fab-ai.org
+			</a>
+			<span class="text-gray-300">|</span>
+			<button onclick={handleHome} class="flex items-center gap-2 text-lg font-semibold text-dark hover:text-primary transition-colors">
+				<span>Micro Evals</span>
+			</button>
+		</div>
 
 		<!-- Navigation Links -->
 		<div class="flex items-center gap-6">
