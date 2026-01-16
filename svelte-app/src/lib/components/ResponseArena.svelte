@@ -12,35 +12,59 @@
 
 	let { task, isLoading, votingMode, onVote }: Props = $props();
 
-	let selectedWinner: string | null = $state(null);
 	let isVoting = $state(false);
+	let voteResult = $state<{
+		winner: { model: string; newRating: number; change: string };
+		loser: { model: string; newRating: number; change: string };
+		selectedSide: 'A' | 'B';
+	} | null>(null);
+
+	// For A vs B voting: randomly selected pair
+	let modelA = $state<string | null>(null);
+	let modelB = $state<string | null>(null);
 
 	// Get all available models from the task's responses
-	let availableModels = $derived(
-		task ? (Object.keys(task.responses) as string[]) : []
-	);
+	let availableModels = $derived(task ? (Object.keys(task.responses) as string[]) : []);
 
-	// Track which models are visible (all selected by default)
+	// Track which models are visible (for compare mode)
 	let visibleModels = $state<Set<string>>(new Set());
 
-	// Initialize visible models when task changes
+	// Initialize visible models and random pair when task changes
 	$effect(() => {
 		if (task) {
 			visibleModels = new Set(availableModels);
+			voteResult = null;
+			selectRandomPair();
 		}
 	});
 
-	// Filter to only show selected models
-	let displayedModels = $derived(
-		availableModels.filter((key) => visibleModels.has(key))
-	);
+	// Re-select random pair when switching to voting mode
+	$effect(() => {
+		if (votingMode && task && !voteResult) {
+			selectRandomPair();
+		}
+	});
+
+	function selectRandomPair() {
+		if (availableModels.length < 2) return;
+
+		// Shuffle and pick first two
+		const shuffled = [...availableModels].sort(() => Math.random() - 0.5);
+		modelA = shuffled[0];
+		modelB = shuffled[1];
+	}
+
+	// Filter to only show selected models (for compare mode)
+	let displayedModels = $derived(availableModels.filter((key) => visibleModels.has(key)));
 
 	function getModelInfo(key: string) {
-		return MODELS.find((m) => m.key === key) || {
-			key,
-			name: key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
-			color: '#888888'
-		};
+		return (
+			MODELS.find((m) => m.key === key) || {
+				key,
+				name: key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
+				color: '#888888'
+			}
+		);
 	}
 
 	function toggleModel(modelKey: string) {
@@ -49,27 +73,22 @@
 		} else {
 			visibleModels.add(modelKey);
 		}
-		// Create new Set to trigger reactivity
 		visibleModels = new Set(visibleModels);
 	}
 
-	function handleSelectWinner(winner: string) {
-		if (!task || isVoting) return;
-		selectedWinner = winner;
-	}
+	async function handleVote(selectedSide: 'A' | 'B') {
+		if (!task || !modelA || !modelB || isVoting) return;
 
-	async function handleVote() {
-		if (!task || !selectedWinner || isVoting) return;
-
-		// Find the loser (the other visible model)
-		const loser = displayedModels.find((m) => m !== selectedWinner && task.responses[m]);
-		if (!loser) return;
+		const winner = selectedSide === 'A' ? modelA : modelB;
+		const loser = selectedSide === 'A' ? modelB : modelA;
 
 		isVoting = true;
 		try {
-			await onVote(task.id, selectedWinner, loser);
-			// Reset selection after successful vote
-			selectedWinner = null;
+			const result = await onVote(task.id, winner, loser);
+			voteResult = {
+				...result,
+				selectedSide
+			};
 		} catch (error) {
 			console.error('Vote failed:', error);
 			alert('Failed to submit vote. Please try again.');
@@ -78,8 +97,13 @@
 		}
 	}
 
+	function nextMatchup() {
+		voteResult = null;
+		selectRandomPair();
+	}
+
 	function renderMarkdown(content: string): string {
-		return marked.parse(content);
+		return marked.parse(content) as string;
 	}
 </script>
 
@@ -94,11 +118,187 @@
 	{:else if isLoading}
 		<div class="h-full flex items-center justify-center">
 			<div class="text-center">
-				<div class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+				<div
+					class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"
+				></div>
 				<p class="text-gray-600">Loading responses...</p>
 			</div>
 		</div>
+	{:else if votingMode}
+		<!-- A vs B Voting Mode -->
+		<div class="max-w-6xl mx-auto p-6">
+			<!-- Task Header -->
+			<div class="mb-6 text-center">
+				<h2 class="text-2xl font-bold text-gray-900 mb-2">{task.title}</h2>
+				<p class="text-gray-600">{task.description}</p>
+			</div>
+
+			{#if voteResult}
+				<!-- Vote Result Reveal -->
+				<div class="mb-6 bg-white rounded-lg border border-gray-200 p-6 text-center">
+					<h3 class="text-xl font-semibold text-gray-900 mb-4">Results Revealed!</h3>
+					<div class="flex justify-center gap-8 mb-6">
+						<div class="text-center">
+							<div
+								class="text-sm text-gray-500 mb-1"
+								style="color: {getModelInfo(modelA!).color}"
+							>
+								Response A
+							</div>
+							<div class="font-semibold text-lg" style="color: {getModelInfo(modelA!).color}">
+								{getModelInfo(modelA!).name}
+							</div>
+							<div
+								class="text-sm {voteResult.selectedSide === 'A'
+									? 'text-green-600 font-medium'
+									: 'text-red-600'}"
+							>
+								{voteResult.selectedSide === 'A' ? voteResult.winner.change : voteResult.loser.change}
+							</div>
+						</div>
+						<div class="text-2xl text-gray-400 self-center">vs</div>
+						<div class="text-center">
+							<div
+								class="text-sm text-gray-500 mb-1"
+								style="color: {getModelInfo(modelB!).color}"
+							>
+								Response B
+							</div>
+							<div class="font-semibold text-lg" style="color: {getModelInfo(modelB!).color}">
+								{getModelInfo(modelB!).name}
+							</div>
+							<div
+								class="text-sm {voteResult.selectedSide === 'B'
+									? 'text-green-600 font-medium'
+									: 'text-red-600'}"
+							>
+								{voteResult.selectedSide === 'B' ? voteResult.winner.change : voteResult.loser.change}
+							</div>
+						</div>
+					</div>
+					<p class="text-gray-600 mb-4">
+						You voted for <span class="font-semibold">{getModelInfo(voteResult.selectedSide === 'A' ? modelA! : modelB!).name}</span>
+					</p>
+					<button
+						onclick={nextMatchup}
+						class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+					>
+						Next Matchup
+					</button>
+				</div>
+			{:else}
+				<!-- Voting Instructions -->
+				<div class="mb-6 text-center">
+					<p class="text-gray-500 text-sm">
+						Which response is better? Click to vote.
+					</p>
+				</div>
+			{/if}
+
+			<!-- A vs B Response Cards -->
+			{#if modelA && modelB}
+				<div class="grid grid-cols-2 gap-6">
+					<!-- Response A -->
+					<div
+						class="bg-white rounded-lg shadow-sm border-2 transition-all {!voteResult && !isVoting
+							? 'border-gray-200 hover:border-blue-400 cursor-pointer hover:shadow-md'
+							: 'border-gray-200'} {voteResult?.selectedSide === 'A' ? 'ring-2 ring-green-400 border-green-400' : ''}"
+						onclick={() => !voteResult && !isVoting && handleVote('A')}
+						onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && !voteResult && !isVoting && handleVote('A')}
+						role="button"
+						tabindex={!voteResult && !isVoting ? 0 : -1}
+					>
+						<!-- Header -->
+						<div
+							class="px-4 py-3 border-b flex items-center justify-between {voteResult
+								? ''
+								: 'bg-blue-50'}"
+							style={voteResult ? `background-color: ${getModelInfo(modelA).color}20` : ''}
+						>
+							<div class="flex items-center gap-2">
+								{#if voteResult}
+									<span
+										class="w-3 h-3 rounded-full"
+										style="background-color: {getModelInfo(modelA).color}"
+									></span>
+									<span class="font-semibold text-gray-900">{getModelInfo(modelA).name}</span>
+								{:else}
+									<span class="w-3 h-3 rounded-full bg-blue-500"></span>
+									<span class="font-semibold text-gray-900">Response A</span>
+								{/if}
+							</div>
+							{#if !voteResult && !isVoting}
+								<span class="text-blue-600 text-sm font-medium">Click to vote</span>
+							{/if}
+							{#if voteResult?.selectedSide === 'A'}
+								<span class="text-green-600 font-medium">Winner</span>
+							{/if}
+						</div>
+
+						<!-- Content -->
+						<div class="p-4 prose prose-sm max-w-none max-h-[60vh] overflow-y-auto">
+							{@html renderMarkdown(task.responses[modelA] || '')}
+						</div>
+					</div>
+
+					<!-- Response B -->
+					<div
+						class="bg-white rounded-lg shadow-sm border-2 transition-all {!voteResult && !isVoting
+							? 'border-gray-200 hover:border-orange-400 cursor-pointer hover:shadow-md'
+							: 'border-gray-200'} {voteResult?.selectedSide === 'B' ? 'ring-2 ring-green-400 border-green-400' : ''}"
+						onclick={() => !voteResult && !isVoting && handleVote('B')}
+						onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && !voteResult && !isVoting && handleVote('B')}
+						role="button"
+						tabindex={!voteResult && !isVoting ? 0 : -1}
+					>
+						<!-- Header -->
+						<div
+							class="px-4 py-3 border-b flex items-center justify-between {voteResult
+								? ''
+								: 'bg-orange-50'}"
+							style={voteResult ? `background-color: ${getModelInfo(modelB).color}20` : ''}
+						>
+							<div class="flex items-center gap-2">
+								{#if voteResult}
+									<span
+										class="w-3 h-3 rounded-full"
+										style="background-color: {getModelInfo(modelB).color}"
+									></span>
+									<span class="font-semibold text-gray-900">{getModelInfo(modelB).name}</span>
+								{:else}
+									<span class="w-3 h-3 rounded-full bg-orange-500"></span>
+									<span class="font-semibold text-gray-900">Response B</span>
+								{/if}
+							</div>
+							{#if !voteResult && !isVoting}
+								<span class="text-orange-600 text-sm font-medium">Click to vote</span>
+							{/if}
+							{#if voteResult?.selectedSide === 'B'}
+								<span class="text-green-600 font-medium">Winner</span>
+							{/if}
+						</div>
+
+						<!-- Content -->
+						<div class="p-4 prose prose-sm max-w-none max-h-[60vh] overflow-y-auto">
+							{@html renderMarkdown(task.responses[modelB] || '')}
+						</div>
+					</div>
+				</div>
+			{/if}
+
+			{#if isVoting}
+				<div class="mt-6 flex justify-center">
+					<div class="flex items-center gap-2 text-gray-600">
+						<div
+							class="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"
+						></div>
+						<span>Submitting vote...</span>
+					</div>
+				</div>
+			{/if}
+		</div>
 	{:else}
+		<!-- Compare Mode (original behavior) -->
 		<div class="max-w-7xl mx-auto p-6">
 			<!-- Task Header -->
 			<div class="mb-6">
@@ -138,10 +338,7 @@
 								onchange={() => toggleModel(modelKey)}
 								class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
 							/>
-							<span
-								class="w-2 h-2 rounded-full"
-								style="background-color: {model.color}"
-							></span>
+							<span class="w-2 h-2 rounded-full" style="background-color: {model.color}"></span>
 							<span class="text-sm text-gray-700">{model.name}</span>
 						</label>
 					{/each}
@@ -154,59 +351,38 @@
 					<p>No models selected. Check at least one model above to view responses.</p>
 				</div>
 			{:else}
-				<div class="grid gap-6" style="grid-template-columns: repeat({displayedModels.length}, minmax(300px, 1fr));">
-				{#each displayedModels as modelKey}
-					{@const model = getModelInfo(modelKey)}
-					{@const content = task.responses[modelKey] || ''}
-					<div
-						class="bg-white rounded-lg shadow-sm border-2 transition-all {votingMode && selectedWinner ===
-						modelKey
-							? 'border-blue-500 ring-2 ring-blue-200'
-							: votingMode
-								? 'border-gray-200 hover:border-blue-300 cursor-pointer'
-								: 'border-gray-200'}"
-						onclick={() => votingMode && handleSelectWinner(modelKey)}
-					>
-						<!-- Model Header -->
-						<div
-							class="px-4 py-3 border-b border-gray-200 flex items-center justify-between"
-							style="background-color: {model?.color || '#888'}20"
-						>
-							<div class="flex items-center gap-2">
-								<span
-									class="w-3 h-3 rounded-full"
-									style="background-color: {model?.color || '#888'}"
-								></span>
-								<span class="font-semibold text-gray-900">{model?.name || modelKey}</span>
+				<div
+					class="grid gap-6"
+					style="grid-template-columns: repeat({displayedModels.length}, minmax(300px, 1fr));"
+				>
+					{#each displayedModels as modelKey}
+						{@const model = getModelInfo(modelKey)}
+						{@const content = task.responses[modelKey] || ''}
+						<div class="bg-white rounded-lg shadow-sm border-2 border-gray-200">
+							<!-- Model Header -->
+							<div
+								class="px-4 py-3 border-b border-gray-200 flex items-center justify-between"
+								style="background-color: {model?.color || '#888'}20"
+							>
+								<div class="flex items-center gap-2">
+									<span
+										class="w-3 h-3 rounded-full"
+										style="background-color: {model?.color || '#888'}"
+									></span>
+									<span class="font-semibold text-gray-900">{model?.name || modelKey}</span>
+								</div>
 							</div>
-							{#if votingMode && selectedWinner === modelKey}
-								<span class="text-blue-600 font-medium">Selected</span>
-							{/if}
-						</div>
 
-						<!-- Response Content -->
-						<div class="p-4 prose prose-sm max-w-none">
-							{#if content}
-								{@html renderMarkdown(content)}
-							{:else}
-								<p class="text-gray-500 italic">No response available</p>
-							{/if}
+							<!-- Response Content -->
+							<div class="p-4 prose prose-sm max-w-none">
+								{#if content}
+									{@html renderMarkdown(content)}
+								{:else}
+									<p class="text-gray-500 italic">No response available</p>
+								{/if}
+							</div>
 						</div>
-					</div>
-				{/each}
-			</div>
-			{/if}
-
-			<!-- Voting Button -->
-			{#if votingMode && selectedWinner}
-				<div class="mt-6 flex justify-center">
-					<button
-						onclick={handleVote}
-						disabled={isVoting}
-						class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-					>
-						{isVoting ? 'Submitting vote...' : 'Submit Vote'}
-					</button>
+					{/each}
 				</div>
 			{/if}
 		</div>

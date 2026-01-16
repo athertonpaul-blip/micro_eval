@@ -121,7 +121,7 @@
 		</div>
 		{#if votingMode}
 			<p class="text-sm text-gray-500">
-				Select a task, then vote for the better response
+				Select a task, then vote for the better response (blind A vs B)
 			</p>
 		{/if}
 	</div>

@@ -18,10 +18,7 @@ export const POST: RequestHandler = async ({ request, cookies }) => {
 			throw error(400, 'Winner and loser cannot be the same');
 		}
 
-		const validModels = ['gpt4o', 'claude', 'gemini'];
-		if (!validModels.includes(winner) || !validModels.includes(loser)) {
-			throw error(400, 'Invalid model key');
-		}
+		// Model keys are validated by checking they exist in the responses table
 
 		// Get or create session ID for anonymous tracking
 		let sessionId = cookies.get('session_id');
