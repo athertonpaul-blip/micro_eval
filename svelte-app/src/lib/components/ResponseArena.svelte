@@ -30,8 +30,20 @@
 	// Track expanded state for compare mode (multiple models)
 	let expandedModels = $state<Set<string>>(new Set());
 
-	// Get all available models from the task's responses
-	let availableModels = $derived(task ? (Object.keys(task.responses) as string[]) : []);
+	// Get all available models from the task's responses, sorted by MODELS order
+	let availableModels = $derived(
+		task
+			? Object.keys(task.responses)
+					.sort((a, b) => {
+						const indexA = MODELS.findIndex((m) => m.key === a);
+						const indexB = MODELS.findIndex((m) => m.key === b);
+						// Put unknown models at the end
+						if (indexA === -1) return 1;
+						if (indexB === -1) return -1;
+						return indexA - indexB;
+					})
+			: []
+	);
 
 	// Track which models are visible (for compare mode)
 	let visibleModels = $state<Set<string>>(new Set());
