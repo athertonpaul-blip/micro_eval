@@ -1,0 +1,38 @@
+[
+  {
+    "id": "edu_01",
+    "persona": "educator",
+    "title": "Grade 5 Math Rubric",
+    "prompt": "Create a grading rubric for a 5th grade math project on fractions. Include 4 criteria with clear proficiency levels."
+  },
+  {
+    "id": "edu_02",
+    "persona": "educator",
+    "title": "Differentiation Strategy",
+    "prompt": "Suggest three differentiation strategies for teaching photosynthesis to a mixed-ability 7th grade science class."
+  },
+  {
+    "id": "dev_01",
+    "persona": "developer",
+    "title": "API Documentation Generator",
+    "prompt": "Write a Python function that takes a Flask route and generates OpenAPI documentation for it automatically. Include type hints and error handling."
+  },
+  {
+    "id": "dev_02",
+    "persona": "developer",
+    "title": "Database Schema Design",
+    "prompt": "Design a database schema for a learning management system that tracks students, courses, assignments, and grades. Provide SQL CREATE statements."
+  },
+  {
+    "id": "pol_01",
+    "persona": "policymaker",
+    "title": "Digital Equity Policy",
+    "prompt": "Draft a policy framework for ensuring digital equity in K-12 schools, addressing device access, internet connectivity, and digital literacy. Keep it under 300 words."
+  },
+  {
+    "id": "pol_02",
+    "persona": "policymaker",
+    "title": "AI Ethics Guidelines",
+    "prompt": "Create ethical guidelines for using AI tools in classroom assessment. Include considerations for bias, privacy, and transparency."
+  }
+]
