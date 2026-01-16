@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import pg from 'pg';
-import { tasks, responses, leaderboard } from './schema';
+import { tasks, responses, leaderboard, votes } from './schema';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -34,7 +34,9 @@ async function seed() {
 		const models = Array.from(allModelKeys);
 		console.log(`Found ${models.length} models: ${models.join(', ')}`);
 
-		// Clear existing data
+		// Clear existing data (order matters due to foreign keys)
+		// Delete in reverse order of dependencies: votes -> responses -> tasks
+		await db.delete(votes);
 		await db.delete(responses);
 		await db.delete(leaderboard);
 		await db.delete(tasks);
