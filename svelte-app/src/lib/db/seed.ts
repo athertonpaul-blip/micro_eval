@@ -2,6 +2,12 @@ import 'dotenv/config';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import pg from 'pg';
 import { tasks, responses, leaderboard } from './schema';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const pool = new pg.Pool({
 	connectionString: process.env.DATABASE_URL
@@ -9,68 +15,63 @@ const pool = new pg.Pool({
 
 const db = drizzle(pool);
 
-const sampleTasks = [
-	{
-		id: 'task-1',
-		title: 'Explain photosynthesis to a 5th grader',
-		description: 'Create an age-appropriate explanation of photosynthesis for elementary school students.',
-		persona: 'educator'
-	},
-	{
-		id: 'task-2',
-		title: 'Write a quiz on the American Revolution',
-		description: 'Generate a 10-question multiple choice quiz about the American Revolution for high school students.',
-		persona: 'educator'
-	},
-	{
-		id: 'task-3',
-		title: 'Help me understand quadratic equations',
-		description: 'Explain how to solve quadratic equations step by step.',
-		persona: 'student'
-	}
-];
-
-const models = ['gpt4o', 'claude', 'gemini'];
-
 async function seed() {
-	console.log('Seeding database...');
+	console.log('Seeding database from data.json...');
 
-	// Clear existing data
-	await db.delete(responses);
-	await db.delete(leaderboard);
-	await db.delete(tasks);
+	try {
+		// Read data.json - path is relative to this script
+		const dataPath = path.resolve(__dirname, '../../../../docs/data.json');
+		const rawData = fs.readFileSync(dataPath, 'utf8');
+		const jsonData = JSON.parse(rawData);
 
-	// Insert tasks
-	for (const task of sampleTasks) {
-		await db.insert(tasks).values(task);
-		console.log(`Inserted task: ${task.title}`);
+		const models = ['gpt4o', 'claude', 'gemini'];
 
-		// Insert placeholder responses for each model
+		// Clear existing data
+		await db.delete(responses);
+		await db.delete(leaderboard);
+		await db.delete(tasks);
+
+		// Insert tasks
+		for (const taskData of jsonData) {
+			await db.insert(tasks).values({
+				id: taskData.id,
+				title: taskData.title,
+				description: taskData.prompt, // Mapping 'prompt' from JSON to 'description' in DB
+				persona: taskData.persona
+			});
+			console.log(`Inserted task: ${taskData.title}`);
+
+			// Insert responses for each model
+			for (const modelKey of models) {
+				const content = taskData.responses[modelKey] || `No response available for ${modelKey}`;
+				await db.insert(responses).values({
+					taskId: taskData.id,
+					modelKey,
+					content,
+					eloRating: 1000,
+					totalComparisons: 0
+				});
+			}
+		}
+
+		// Initialize leaderboard
 		for (const modelKey of models) {
-			await db.insert(responses).values({
-				taskId: task.id,
+			await db.insert(leaderboard).values({
 				modelKey,
-				content: `Sample response from ${modelKey} for "${task.title}"`,
-				eloRating: 1000,
+				totalElo: '1000',
+				wins: 0,
+				losses: 0,
 				totalComparisons: 0
 			});
+			console.log(`Initialized leaderboard for: ${modelKey}`);
 		}
-	}
 
-	// Initialize leaderboard
-	for (const modelKey of models) {
-		await db.insert(leaderboard).values({
-			modelKey,
-			totalElo: '1000',
-			wins: 0,
-			losses: 0,
-			totalComparisons: 0
-		});
-		console.log(`Initialized leaderboard for: ${modelKey}`);
+		console.log('Seeding complete!');
+	} catch (error) {
+		console.error('Error during seeding:', error);
+	} finally {
+		await pool.end();
 	}
-
-	console.log('Seeding complete!');
-	await pool.end();
 }
 
 seed().catch(console.error);
