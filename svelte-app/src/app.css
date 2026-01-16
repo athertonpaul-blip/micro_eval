@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+@layer components {
+	/* Custom scrollbar for response areas */
+	.custom-scrollbar::-webkit-scrollbar {
+		width: 8px;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-track {
+		background: #f1f5f9;
+		border-radius: 4px;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-thumb {
+		background: #cbd5e1;
+		border-radius: 4px;
+	}
+
+	.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+		background: #94a3b8;
+	}
+
+	/* Prose customization for markdown content */
+	.prose-response {
+		@apply prose prose-sm max-w-none;
+		@apply prose-headings:text-gray-800 prose-headings:font-semibold;
+		@apply prose-p:text-gray-700 prose-p:leading-relaxed;
+		@apply prose-code:bg-gray-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:text-sm;
+		@apply prose-pre:bg-gray-900 prose-pre:text-gray-100;
+		@apply prose-ul:text-gray-700 prose-ol:text-gray-700;
+		@apply prose-li:marker:text-gray-400;
+	}
+}
+
+@layer utilities {
+	/* Loading animation for responses */
+	.loading-dots::after {
+		content: '';
+		animation: dots 1.5s steps(4, end) infinite;
+	}
+
+	@keyframes dots {
+		0%, 20% { content: ''; }
+		40% { content: '.'; }
+		60% { content: '..'; }
+		80%, 100% { content: '...'; }
+	}
+
+	/* Fade in animation */
+	.animate-fade-in {
+		animation: fadeIn 0.3s ease-out;
+	}
+
+	@keyframes fadeIn {
+		from {
+			opacity: 0;
+			transform: translateY(10px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+}
