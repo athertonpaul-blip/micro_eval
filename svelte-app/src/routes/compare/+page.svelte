@@ -15,13 +15,15 @@
 
 	let { data }: Props = $props();
 
-	let currentPersona = $state<Persona>(data.initialPersona);
+	// Use derived to reactively get the initial persona
+	let initialPersona = $derived(data.initialPersona);
+	let currentPersona = $state<Persona>(initialPersona);
 	let selectedTask = $state<TaskWithResponses | null>(null);
 	let isLoading = $state(false);
 
 	// Update currentPersona when data.initialPersona changes
 	$effect(() => {
-		currentPersona = data.initialPersona;
+		currentPersona = initialPersona;
 	});
 
 	// Check if voting mode is enabled via URL param
