@@ -13,11 +13,7 @@ export interface Task {
 }
 
 export interface TaskWithResponses extends Task {
-	responses: {
-		gpt4o: string;
-		claude: string;
-		gemini: string;
-	};
+	responses: Record<string, string>; // Allow any model keys from data.json
 }
 
 export interface ModelResponse {

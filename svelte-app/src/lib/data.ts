@@ -28,11 +28,7 @@ export async function getAllTasks(): Promise<Task[]> {
 			title: task.title,
 			description: task.description,
 			persona: task.persona as Task['persona'],
-			responses: {
-				gpt4o: responseMap['gpt4o'] || '',
-				claude: responseMap['claude'] || '',
-				gemini: responseMap['gemini'] || ''
-			}
+			responses: responseMap // Include all available models dynamically
 		});
 	}
 
@@ -59,10 +55,6 @@ export async function getTaskById(id: string): Promise<Task | null> {
 		title: task.title,
 		description: task.description,
 		persona: task.persona as Task['persona'],
-		responses: {
-			gpt4o: responseMap['gpt4o'] || '',
-			claude: responseMap['claude'] || '',
-			gemini: responseMap['gemini'] || ''
-		}
+		responses: responseMap // Include all available models dynamically
 	};
 }

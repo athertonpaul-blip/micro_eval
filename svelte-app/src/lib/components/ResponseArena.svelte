@@ -15,10 +15,42 @@
 	let selectedWinner: string | null = $state(null);
 	let isVoting = $state(false);
 
-	const models = ['gpt4o', 'claude', 'gemini'] as const;
+	// Get all available models from the task's responses
+	let availableModels = $derived(
+		task ? (Object.keys(task.responses) as string[]) : []
+	);
+
+	// Track which models are visible (all selected by default)
+	let visibleModels = $state<Set<string>>(new Set());
+
+	// Initialize visible models when task changes
+	$effect(() => {
+		if (task) {
+			visibleModels = new Set(availableModels);
+		}
+	});
+
+	// Filter to only show selected models
+	let displayedModels = $derived(
+		availableModels.filter((key) => visibleModels.has(key))
+	);
 
 	function getModelInfo(key: string) {
-		return MODELS.find((m) => m.key === key);
+		return MODELS.find((m) => m.key === key) || {
+			key,
+			name: key.charAt(0).toUpperCase() + key.slice(1).replace(/-/g, ' '),
+			color: '#888888'
+		};
+	}
+
+	function toggleModel(modelKey: string) {
+		if (visibleModels.has(modelKey)) {
+			visibleModels.delete(modelKey);
+		} else {
+			visibleModels.add(modelKey);
+		}
+		// Create new Set to trigger reactivity
+		visibleModels = new Set(visibleModels);
 	}
 
 	function handleSelectWinner(winner: string) {
@@ -29,8 +61,8 @@
 	async function handleVote() {
 		if (!task || !selectedWinner || isVoting) return;
 
-		// Find the loser (the other model)
-		const loser = models.find((m) => m !== selectedWinner && task.responses[m]);
+		// Find the loser (the other visible model)
+		const loser = displayedModels.find((m) => m !== selectedWinner && task.responses[m]);
 		if (!loser) return;
 
 		isVoting = true;
@@ -74,9 +106,56 @@
 				<p class="text-gray-600">{task.description}</p>
 			</div>
 
+			<!-- Model Selection Checkboxes -->
+			<div class="mb-6 bg-white rounded-lg border border-gray-200 p-4">
+				<div class="flex items-center gap-2 mb-3">
+					<span class="text-sm font-medium text-gray-700">Show models:</span>
+					<button
+						onclick={() => {
+							visibleModels = new Set(availableModels);
+						}}
+						class="text-xs text-blue-600 hover:text-blue-700"
+					>
+						Select all
+					</button>
+					<span class="text-gray-400">|</span>
+					<button
+						onclick={() => {
+							visibleModels = new Set();
+						}}
+						class="text-xs text-blue-600 hover:text-blue-700"
+					>
+						Deselect all
+					</button>
+				</div>
+				<div class="flex flex-wrap gap-3">
+					{#each availableModels as modelKey}
+						{@const model = getModelInfo(modelKey)}
+						<label class="flex items-center gap-2 cursor-pointer">
+							<input
+								type="checkbox"
+								checked={visibleModels.has(modelKey)}
+								onchange={() => toggleModel(modelKey)}
+								class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+							/>
+							<span
+								class="w-2 h-2 rounded-full"
+								style="background-color: {model.color}"
+							></span>
+							<span class="text-sm text-gray-700">{model.name}</span>
+						</label>
+					{/each}
+				</div>
+			</div>
+
 			<!-- Responses Grid -->
-			<div class="grid md:grid-cols-3 gap-6">
-				{#each models as modelKey}
+			{#if displayedModels.length === 0}
+				<div class="text-center py-12 text-gray-500">
+					<p>No models selected. Check at least one model above to view responses.</p>
+				</div>
+			{:else}
+				<div class="grid gap-6" style="grid-template-columns: repeat({displayedModels.length}, minmax(300px, 1fr));">
+				{#each displayedModels as modelKey}
 					{@const model = getModelInfo(modelKey)}
 					{@const content = task.responses[modelKey] || ''}
 					<div
@@ -116,6 +195,7 @@
 					</div>
 				{/each}
 			</div>
+			{/if}
 
 			<!-- Voting Button -->
 			{#if votingMode && selectedWinner}
