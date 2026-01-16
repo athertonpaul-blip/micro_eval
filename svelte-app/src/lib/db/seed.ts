@@ -24,7 +24,15 @@ async function seed() {
 		const rawData = fs.readFileSync(dataPath, 'utf8');
 		const jsonData = JSON.parse(rawData);
 
-		const models = ['gpt4o', 'claude', 'gemini'];
+		// Collect all unique model keys from all tasks
+		const allModelKeys = new Set<string>();
+		for (const taskData of jsonData) {
+			if (taskData.responses) {
+				Object.keys(taskData.responses).forEach((key) => allModelKeys.add(key));
+			}
+		}
+		const models = Array.from(allModelKeys);
+		console.log(`Found ${models.length} models: ${models.join(', ')}`);
 
 		// Clear existing data
 		await db.delete(responses);
@@ -41,20 +49,22 @@ async function seed() {
 			});
 			console.log(`Inserted task: ${taskData.title}`);
 
-			// Insert responses for each model
-			for (const modelKey of models) {
-				const content = taskData.responses[modelKey] || `No response available for ${modelKey}`;
-				await db.insert(responses).values({
-					taskId: taskData.id,
-					modelKey,
-					content,
-					eloRating: 1000,
-					totalComparisons: 0
-				});
+			// Insert responses for ALL models found in this task's responses
+			if (taskData.responses) {
+				for (const modelKey of Object.keys(taskData.responses)) {
+					const content = taskData.responses[modelKey];
+					await db.insert(responses).values({
+						taskId: taskData.id,
+						modelKey,
+						content,
+						eloRating: 1000,
+						totalComparisons: 0
+					});
+				}
 			}
 		}
 
-		// Initialize leaderboard
+		// Initialize leaderboard for all models
 		for (const modelKey of models) {
 			await db.insert(leaderboard).values({
 				modelKey,
