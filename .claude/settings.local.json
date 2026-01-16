@@ -11,7 +11,8 @@
       "mcp__figma-remote-mcp__whoami",
       "mcp__figma-remote-mcp__get_screenshot",
       "mcp__figma-remote-mcp__get_metadata",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(python:*)"
     ]
   }
 }

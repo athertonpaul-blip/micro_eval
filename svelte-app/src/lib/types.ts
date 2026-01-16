@@ -41,19 +41,53 @@ export const PERSONA_INFO: Record<Persona, { icon: string; label: string; descri
 };
 
 export const MODELS = [
+	// GPT models (newest first)
+	{
+		key: 'gpt5.2-medium',
+		name: 'GPT-5.2 Medium',
+		color: '#10b981' // green-500
+	},
+	{
+		key: 'gpt5.2-low',
+		name: 'GPT-5.2 Low',
+		color: '#34d399' // green-400
+	},
+	{
+		key: 'gpt5-mini',
+		name: 'GPT-5 Mini',
+		color: '#6ee7b7' // green-300
+	},
 	{
 		key: 'gpt4o',
 		name: 'GPT-4o',
-		color: '#10b981' // green-500
+		color: '#059669' // green-600
+	},
+	// Claude models
+	{
+		key: 'claude-opus',
+		name: 'Claude Opus',
+		color: '#a855f7' // purple-500
 	},
 	{
 		key: 'claude',
 		name: 'Claude 3.5 Sonnet',
-		color: '#a855f7' // purple-500
+		color: '#c084fc' // purple-400
+	},
+	// Gemini models
+	{
+		key: 'gemini-pro',
+		name: 'Gemini Pro',
+		color: '#f97316' // orange-500
 	},
 	{
 		key: 'gemini',
 		name: 'Gemini 1.5 Pro',
-		color: '#f97316' // orange-500
+		color: '#fb923c' // orange-400
+	},
+	// Open models
+	{
+		key: 'gemma-3-4b',
+		name: 'Gemma 3 4B',
+		color: '#3b82f6' // blue-500
 	}
 ];
