@@ -39,8 +39,8 @@
 	<div class="max-w-7xl mx-auto flex items-center justify-between">
 		<!-- Logo/Home -->
 		<div class="flex items-center gap-4">
-			<a href="https://fab-ai.org" class="text-sm text-muted hover:text-primary transition-colors">
-				fab-ai.org
+			<a href="https://fab-ai.org" class="hover:opacity-70 transition-opacity">
+				<img src="/Fab-AI-logo-black-transparent.svg" alt="Fab AI" class="h-6" />
 			</a>
 			<span class="text-gray-300">|</span>
 			<button onclick={handleHome} class="flex items-center gap-2 text-lg font-semibold text-dark hover:text-primary transition-colors">

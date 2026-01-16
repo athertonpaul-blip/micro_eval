@@ -5,6 +5,12 @@
 
 	const personas: Persona[] = ['educator', 'developer', 'policymaker'];
 
+	const personaImages: Record<Persona, string> = {
+		educator: '/educator.jpg',
+		developer: '/developer.jpg',
+		policymaker: '/policy_maker.jpg'
+	};
+
 	function selectPersona(persona: Persona) {
 		goto(`/compare?persona=${persona}`);
 	}
@@ -31,8 +37,8 @@
 	<!-- Navigation -->
 	<nav class="absolute top-0 left-0 right-0 px-6 py-4 z-10">
 		<div class="max-w-7xl mx-auto flex items-center justify-between">
-			<a href="https://fab-ai.org" class="text-white/90 hover:text-white text-sm font-medium transition-colors">
-				fab-ai.org
+			<a href="https://fab-ai.org" class="hover:opacity-80 transition-opacity">
+				<img src="/Fab-AI-logo-white-transparent.svg" alt="Fab AI" class="h-8" />
 			</a>
 			<div class="flex items-center gap-6">
 				<a href="/compare" class="text-white/80 hover:text-white transition-colors font-medium">
@@ -50,23 +56,9 @@
 		<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
 			Compare AI Model Responses
 		</h1>
-		<p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto mb-10">
+		<p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto">
 			See how the latest AI models handle real educational tasks. Choose your role to explore relevant scenarios.
 		</p>
-		<div class="flex items-center justify-center gap-6 text-sm text-white/70">
-			<span class="flex items-center gap-2">
-				<span class="w-2 h-2 rounded-full bg-green-400"></span>
-				GPT-4o
-			</span>
-			<span class="flex items-center gap-2">
-				<span class="w-2 h-2 rounded-full bg-purple-400"></span>
-				Claude 3.5 Sonnet
-			</span>
-			<span class="flex items-center gap-2">
-				<span class="w-2 h-2 rounded-full bg-orange-400"></span>
-				Gemini 1.5 Pro
-			</span>
-		</div>
 	</div>
 </section>
 
@@ -79,7 +71,13 @@
 				onclick={() => selectPersona(persona)}
 				class="group bg-white rounded-xl p-8 text-left shadow-sm border border-gray-200 hover:shadow-lg hover:border-primary transition-all"
 			>
-				<div class="text-5xl mb-4">{PERSONA_INFO[persona].icon}</div>
+				<div class="w-16 h-16 mb-4 rounded-full overflow-hidden">
+					<img
+						src={personaImages[persona]}
+						alt={PERSONA_INFO[persona].label}
+						class="w-full h-full object-cover"
+					/>
+				</div>
 				<h2 class="text-2xl font-semibold text-dark mb-2 group-hover:text-primary transition-colors">
 					{PERSONA_INFO[persona].label}
 				</h2>
