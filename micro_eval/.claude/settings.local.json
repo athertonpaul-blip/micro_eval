@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\\\Users\\\\ather\\\\code\\\\micro_evals\\\\micro_eval\")",
+      "Bash(dir \"C:\\\\Users\\\\ather\\\\code\\\\micro_evals\\\\micro_eval\\\\svelte-app\\\\src\")",
+      "Bash(dir \"C:\\\\Users\\\\ather\\\\code\\\\micro_evals\\\\micro_eval\\\\svelte-app\\\\src\\\\lib\")"
+    ]
+  }
+}
