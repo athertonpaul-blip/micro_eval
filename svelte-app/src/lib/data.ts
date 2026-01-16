@@ -3,6 +3,11 @@ import { eq } from 'drizzle-orm';
 import type { Task } from '$lib/types';
 
 export async function getAllTasks(): Promise<Task[]> {
+	if (!process.env.DATABASE_URL) {
+		console.error('DATABASE_URL is not set');
+		throw new Error('Database connection not configured');
+	}
+
 	const allTasks = await db.select().from(tasks);
 
 	const tasksWithResponses: Task[] = [];
