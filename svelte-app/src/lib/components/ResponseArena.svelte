@@ -127,10 +127,10 @@
 	}
 </script>
 
-<div class="flex-1 overflow-y-auto bg-gray-50">
+<div class="flex-1 overflow-y-auto bg-white">
 	{#if !task}
 		<div class="h-full flex items-center justify-center">
-			<div class="text-center text-gray-500">
+			<div class="text-center text-muted">
 				<p class="text-lg mb-2">Select a task to view responses</p>
 				<p class="text-sm">Choose a task from the sidebar to compare AI model responses</p>
 			</div>
@@ -139,9 +139,9 @@
 		<div class="h-full flex items-center justify-center">
 			<div class="text-center">
 				<div
-					class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"
+					class="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"
 				></div>
-				<p class="text-gray-600">Loading responses...</p>
+				<p class="text-muted">Loading responses...</p>
 			</div>
 		</div>
 	{:else if votingMode}
@@ -149,14 +149,14 @@
 		<div class="max-w-6xl mx-auto p-6">
 			<!-- Task Header -->
 			<div class="mb-6 text-center">
-				<h2 class="text-2xl font-bold text-gray-900 mb-2">{task.title}</h2>
-				<p class="text-gray-600">{task.description}</p>
+				<h2 class="text-2xl font-bold text-dark mb-2">{task.title}</h2>
+				<p class="text-muted">{task.description}</p>
 			</div>
 
 			{#if voteResult}
 				<!-- Vote Result Reveal -->
 				<div class="mb-6 bg-white rounded-lg border border-gray-200 p-6 text-center">
-					<h3 class="text-xl font-semibold text-gray-900 mb-4">Results Revealed!</h3>
+					<h3 class="text-xl font-semibold text-dark mb-4">Results Revealed!</h3>
 					<div class="flex justify-center gap-8 mb-6">
 						<div class="text-center">
 							<div
@@ -196,12 +196,12 @@
 							</div>
 						</div>
 					</div>
-					<p class="text-gray-600 mb-4">
+					<p class="text-muted mb-4">
 						You voted for <span class="font-semibold">{getModelInfo(voteResult.selectedSide === 'A' ? modelA! : modelB!).name}</span>
 					</p>
 					<button
 						onclick={nextMatchup}
-						class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+						class="px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors"
 					>
 						Next Matchup
 					</button>
@@ -209,7 +209,7 @@
 			{:else}
 				<!-- Voting Instructions -->
 				<div class="mb-6 text-center">
-					<p class="text-gray-500 text-sm">
+					<p class="text-muted text-sm">
 						Which response is better? Expand to read more, then vote.
 					</p>
 				</div>
@@ -226,7 +226,7 @@
 						<div
 							class="px-4 py-3 border-b flex items-center justify-between {voteResult
 								? ''
-								: 'bg-blue-50'}"
+								: 'bg-primary-light'}"
 							style={voteResult ? `background-color: ${getModelInfo(modelA).color}20` : ''}
 						>
 							<div class="flex items-center gap-2">
@@ -235,10 +235,10 @@
 										class="w-3 h-3 rounded-full"
 										style="background-color: {getModelInfo(modelA).color}"
 									></span>
-									<span class="font-semibold text-gray-900">{getModelInfo(modelA).name}</span>
+									<span class="font-semibold text-dark">{getModelInfo(modelA).name}</span>
 								{:else}
-									<span class="w-3 h-3 rounded-full bg-blue-500"></span>
-									<span class="font-semibold text-gray-900">Response A</span>
+									<span class="w-3 h-3 rounded-full bg-primary"></span>
+									<span class="font-semibold text-dark">Response A</span>
 								{/if}
 							</div>
 							{#if voteResult?.selectedSide === 'A'}
@@ -263,14 +263,14 @@
 						<div class="px-4 py-3 border-t border-gray-100 flex items-center justify-between">
 							<button
 								onclick={(e) => { e.stopPropagation(); expandedA = !expandedA; }}
-								class="text-sm text-gray-500 hover:text-gray-700"
+								class="text-sm text-muted hover:text-dark"
 							>
 								{expandedA ? 'Show less' : 'Show more'}
 							</button>
 							{#if !voteResult && !isVoting}
 								<button
 									onclick={() => handleVote('A')}
-									class="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors"
+									class="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg hover:bg-primary-dark transition-colors"
 								>
 									Vote for A
 								</button>
@@ -286,7 +286,7 @@
 						<div
 							class="px-4 py-3 border-b flex items-center justify-between {voteResult
 								? ''
-								: 'bg-orange-50'}"
+								: 'bg-gray-100'}"
 							style={voteResult ? `background-color: ${getModelInfo(modelB).color}20` : ''}
 						>
 							<div class="flex items-center gap-2">
@@ -295,10 +295,10 @@
 										class="w-3 h-3 rounded-full"
 										style="background-color: {getModelInfo(modelB).color}"
 									></span>
-									<span class="font-semibold text-gray-900">{getModelInfo(modelB).name}</span>
+									<span class="font-semibold text-dark">{getModelInfo(modelB).name}</span>
 								{:else}
-									<span class="w-3 h-3 rounded-full bg-orange-500"></span>
-									<span class="font-semibold text-gray-900">Response B</span>
+									<span class="w-3 h-3 rounded-full bg-muted"></span>
+									<span class="font-semibold text-dark">Response B</span>
 								{/if}
 							</div>
 							{#if voteResult?.selectedSide === 'B'}
@@ -323,14 +323,14 @@
 						<div class="px-4 py-3 border-t border-gray-100 flex items-center justify-between">
 							<button
 								onclick={(e) => { e.stopPropagation(); expandedB = !expandedB; }}
-								class="text-sm text-gray-500 hover:text-gray-700"
+								class="text-sm text-muted hover:text-dark"
 							>
 								{expandedB ? 'Show less' : 'Show more'}
 							</button>
 							{#if !voteResult && !isVoting}
 								<button
 									onclick={() => handleVote('B')}
-									class="px-4 py-2 bg-orange-600 text-white text-sm font-medium rounded-lg hover:bg-orange-700 transition-colors"
+									class="px-4 py-2 bg-muted text-white text-sm font-medium rounded-lg hover:bg-dark transition-colors"
 								>
 									Vote for B
 								</button>
@@ -342,9 +342,9 @@
 
 			{#if isVoting}
 				<div class="mt-6 flex justify-center">
-					<div class="flex items-center gap-2 text-gray-600">
+					<div class="flex items-center gap-2 text-muted">
 						<div
-							class="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-blue-600"
+							class="inline-block animate-spin rounded-full h-5 w-5 border-b-2 border-primary"
 						></div>
 						<span>Submitting vote...</span>
 					</div>
@@ -356,19 +356,19 @@
 		<div class="max-w-7xl mx-auto p-6">
 			<!-- Task Header -->
 			<div class="mb-6">
-				<h2 class="text-2xl font-bold text-gray-900 mb-2">{task.title}</h2>
-				<p class="text-gray-600">{task.description}</p>
+				<h2 class="text-2xl font-bold text-dark mb-2">{task.title}</h2>
+				<p class="text-muted">{task.description}</p>
 			</div>
 
 			<!-- Model Selection Checkboxes -->
 			<div class="mb-6 bg-white rounded-lg border border-gray-200 p-4">
 				<div class="flex items-center gap-2 mb-3">
-					<span class="text-sm font-medium text-gray-700">Show models:</span>
+					<span class="text-sm font-medium text-muted">Show models:</span>
 					<button
 						onclick={() => {
 							visibleModels = new Set(availableModels);
 						}}
-						class="text-xs text-blue-600 hover:text-blue-700"
+						class="text-xs text-primary hover:text-primary-dark"
 					>
 						Select all
 					</button>
@@ -377,7 +377,7 @@
 						onclick={() => {
 							visibleModels = new Set();
 						}}
-						class="text-xs text-blue-600 hover:text-blue-700"
+						class="text-xs text-primary hover:text-primary-dark"
 					>
 						Deselect all
 					</button>
@@ -390,10 +390,10 @@
 								type="checkbox"
 								checked={visibleModels.has(modelKey)}
 								onchange={() => toggleModel(modelKey)}
-								class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+								class="w-4 h-4 text-primary border-gray-300 rounded focus:ring-primary"
 							/>
 							<span class="w-2 h-2 rounded-full" style="background-color: {model.color}"></span>
-							<span class="text-sm text-gray-700">{model.name}</span>
+							<span class="text-sm text-muted">{model.name}</span>
 						</label>
 					{/each}
 				</div>
@@ -401,7 +401,7 @@
 
 			<!-- Responses Grid -->
 			{#if displayedModels.length === 0}
-				<div class="text-center py-12 text-gray-500">
+				<div class="text-center py-12 text-muted">
 					<p>No models selected. Check at least one model above to view responses.</p>
 				</div>
 			{:else}
@@ -424,7 +424,7 @@
 										class="w-3 h-3 rounded-full"
 										style="background-color: {model?.color || '#888'}"
 									></span>
-									<span class="font-semibold text-gray-900">{model?.name || modelKey}</span>
+									<span class="font-semibold text-dark">{model?.name || modelKey}</span>
 								</div>
 							</div>
 
@@ -437,7 +437,7 @@
 									{#if content}
 										{@html renderMarkdown(content)}
 									{:else}
-										<p class="text-gray-500 italic">No response available</p>
+										<p class="text-muted italic">No response available</p>
 									{/if}
 								</div>
 								{#if !isExpanded && content}
@@ -450,7 +450,7 @@
 								<div class="px-4 py-2 border-t border-gray-100">
 									<button
 										onclick={() => toggleExpanded(modelKey)}
-										class="text-sm text-gray-500 hover:text-gray-700"
+										class="text-sm text-muted hover:text-dark"
 									>
 										{isExpanded ? 'Show less' : 'Show more'}
 									</button>

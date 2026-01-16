@@ -97,30 +97,30 @@
 	/>
 
 	<!-- Mode toggle bar -->
-	<div class="bg-gray-100 border-b border-gray-200 px-4 py-2 flex items-center justify-between">
+	<div class="bg-gray-50 border-b border-gray-200 px-4 py-2 flex items-center justify-between">
 		<div class="flex items-center gap-4">
-			<span class="text-sm text-gray-600">Mode:</span>
+			<span class="text-sm text-muted">Mode:</span>
 			<div class="flex items-center gap-1 bg-white rounded-lg p-1 shadow-sm">
 				<button
 					onclick={toggleVotingMode}
 					class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors {!votingMode
-						? 'bg-blue-600 text-white'
-						: 'text-gray-600 hover:text-gray-900'}"
+						? 'bg-primary text-white'
+						: 'text-muted hover:text-dark'}"
 				>
 					Compare
 				</button>
 				<button
 					onclick={toggleVotingMode}
 					class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors {votingMode
-						? 'bg-blue-600 text-white'
-						: 'text-gray-600 hover:text-gray-900'}"
+						? 'bg-primary text-white'
+						: 'text-muted hover:text-dark'}"
 				>
 					Vote
 				</button>
 			</div>
 		</div>
 		{#if votingMode}
-			<p class="text-sm text-gray-500">
+			<p class="text-sm text-muted">
 				Select a task, then vote for the better response (blind A vs B)
 			</p>
 		{/if}

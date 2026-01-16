@@ -8,6 +8,6 @@
 	let { children }: Props = $props();
 </script>
 
-<div class="min-h-screen bg-gray-50">
+<div class="min-h-screen bg-white">
 	{@render children()}
 </div>
