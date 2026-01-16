@@ -25,7 +25,7 @@
 	<!-- Gradient Overlay -->
 	<div
 		class="absolute inset-0"
-		style="background: linear-gradient(244deg, rgba(33, 21, 1, 1) 8%, rgba(34, 21, 1, 0.59) 28%, rgba(33, 21, 1, 1) 74%);"
+		style="background: linear-gradient(244deg, rgba(33, 21, 1, 0.85) 8%, rgba(34, 21, 1, 0.4) 28%, rgba(33, 21, 1, 0.75) 74%);"
 	></div>
 
 	<!-- Navigation -->
