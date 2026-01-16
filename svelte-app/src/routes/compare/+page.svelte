@@ -19,6 +19,11 @@
 	let selectedTask = $state<TaskWithResponses | null>(null);
 	let isLoading = $state(false);
 
+	// Update currentPersona when data.initialPersona changes
+	$effect(() => {
+		currentPersona = data.initialPersona;
+	});
+
 	// Check if voting mode is enabled via URL param
 	let votingMode = $derived($page.url.searchParams.get('voting') === 'true');
 
