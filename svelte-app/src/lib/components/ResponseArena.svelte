@@ -8,9 +8,10 @@
 		isLoading: boolean;
 		votingMode: boolean;
 		onVote: (taskId: string, winner: string, loser: string) => Promise<any>;
+		onOpenSidebar?: () => void;
 	}
 
-	let { task, isLoading, votingMode, onVote }: Props = $props();
+	let { task, isLoading, votingMode, onVote, onOpenSidebar }: Props = $props();
 
 	let isVoting = $state(false);
 	let voteResult = $state<{
@@ -141,10 +142,37 @@
 
 <div class="flex-1 overflow-y-auto bg-white">
 	{#if !task}
-		<div class="h-full flex items-center justify-center">
-			<div class="text-center text-muted">
-				<p class="text-lg mb-2">Select a task to view responses</p>
-				<p class="text-sm">Choose a task from the sidebar to compare AI model responses</p>
+		<div class="h-full flex items-center justify-center p-4">
+			<div class="text-center">
+				<!-- Mobile-focused empty state -->
+				<div class="mb-6">
+					<svg class="w-16 h-16 mx-auto text-gray-300 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+						<path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+					</svg>
+					<h3 class="text-lg font-semibold text-dark mb-2">No task selected</h3>
+					<p class="text-muted text-sm max-w-xs mx-auto">
+						Select a task to compare how different AI models respond
+					</p>
+				</div>
+
+				<!-- Prominent button for mobile -->
+				{#if onOpenSidebar}
+					<button
+						onclick={onOpenSidebar}
+						class="md:hidden inline-flex items-center gap-2 px-6 py-3 bg-primary text-white font-medium rounded-lg hover:bg-primary-dark transition-colors shadow-sm"
+					>
+						<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+						</svg>
+						Browse Tasks
+					</button>
+					<p class="md:hidden text-xs text-muted mt-3">Tap to see available tasks</p>
+				{/if}
+
+				<!-- Desktop hint -->
+				<p class="hidden md:block text-sm text-muted">
+					Choose a task from the sidebar on the left
+				</p>
 			</div>
 		</div>
 	{:else if isLoading}

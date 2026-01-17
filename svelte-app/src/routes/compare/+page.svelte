@@ -135,15 +135,16 @@
 	<!-- Mode toggle bar -->
 	<div class="bg-gray-50 border-b border-gray-200 px-3 sm:px-4 py-2 flex items-center justify-between gap-2">
 		<div class="flex items-center gap-2 sm:gap-4">
-			<!-- Mobile sidebar toggle -->
+			<!-- Mobile sidebar toggle - more prominent with label -->
 			<button
 				onclick={() => sidebarOpen = !sidebarOpen}
-				class="md:hidden p-2 -ml-1 text-muted hover:text-dark rounded-lg hover:bg-gray-200 transition-colors"
+				class="md:hidden flex items-center gap-1.5 px-2.5 py-1.5 -ml-1 text-primary bg-primary/10 hover:bg-primary/20 rounded-lg transition-colors font-medium text-sm"
 				aria-label="Toggle task list"
 			>
-				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
 				</svg>
+				<span>Tasks</span>
 			</button>
 			<span class="text-sm text-muted hidden sm:inline">Mode:</span>
 			<div class="flex items-center gap-1 bg-white rounded-lg p-1 shadow-sm">
@@ -218,6 +219,7 @@
 			{isLoading}
 			{votingMode}
 			onVote={handleVote}
+			onOpenSidebar={() => sidebarOpen = true}
 		/>
 	</div>
 </div>
