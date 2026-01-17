@@ -20,6 +20,7 @@
 	let currentPersona = $state<Persona>(initialPersona);
 	let selectedTask = $state<TaskWithResponses | null>(null);
 	let isLoading = $state(false);
+	let sidebarOpen = $state(false);
 
 	// Update currentPersona when data.initialPersona changes
 	$effect(() => {
@@ -52,6 +53,8 @@
 		// Simulate loading for better UX (like the original)
 		isLoading = true;
 		selectedTask = task;
+		// Close sidebar on mobile after selection
+		sidebarOpen = false;
 
 		// Staggered reveal like the original
 		setTimeout(() => {
@@ -104,13 +107,23 @@
 	/>
 
 	<!-- Mode toggle bar -->
-	<div class="bg-gray-50 border-b border-gray-200 px-4 py-2 flex items-center justify-between">
-		<div class="flex items-center gap-4">
-			<span class="text-sm text-muted">Mode:</span>
+	<div class="bg-gray-50 border-b border-gray-200 px-3 sm:px-4 py-2 flex items-center justify-between gap-2">
+		<div class="flex items-center gap-2 sm:gap-4">
+			<!-- Mobile sidebar toggle -->
+			<button
+				onclick={() => sidebarOpen = !sidebarOpen}
+				class="md:hidden p-2 -ml-1 text-muted hover:text-dark rounded-lg hover:bg-gray-200 transition-colors"
+				aria-label="Toggle task list"
+			>
+				<svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+				</svg>
+			</button>
+			<span class="text-sm text-muted hidden sm:inline">Mode:</span>
 			<div class="flex items-center gap-1 bg-white rounded-lg p-1 shadow-sm">
 				<button
 					onclick={toggleVotingMode}
-					class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors {!votingMode
+					class="px-2 sm:px-3 py-1.5 rounded-md text-sm font-medium transition-colors {!votingMode
 						? 'bg-primary text-white'
 						: 'text-muted hover:text-dark'}"
 				>
@@ -118,7 +131,7 @@
 				</button>
 				<button
 					onclick={toggleVotingMode}
-					class="px-3 py-1.5 rounded-md text-sm font-medium transition-colors {votingMode
+					class="px-2 sm:px-3 py-1.5 rounded-md text-sm font-medium transition-colors {votingMode
 						? 'bg-primary text-white'
 						: 'text-muted hover:text-dark'}"
 				>
@@ -127,18 +140,32 @@
 			</div>
 		</div>
 		{#if votingMode}
-			<p class="text-sm text-muted">
+			<p class="text-sm text-muted hidden md:block">
 				Select a task, then vote for the better response (blind A vs B)
 			</p>
 		{/if}
 	</div>
 
-	<div class="flex-1 flex overflow-hidden">
-		<TaskSidebar
-			tasks={filteredTasks}
-			selectedTaskId={selectedTask?.id ?? null}
-			onSelectTask={handleSelectTask}
-		/>
+	<div class="flex-1 flex overflow-hidden relative">
+		<!-- Mobile overlay -->
+		{#if sidebarOpen}
+			<button
+				class="fixed inset-0 bg-black/50 z-40 md:hidden"
+				onclick={() => sidebarOpen = false}
+				aria-label="Close sidebar"
+			></button>
+		{/if}
+
+		<!-- Sidebar - drawer on mobile, always visible on desktop -->
+		<div
+			class="fixed md:relative top-0 bottom-0 left-0 z-50 md:z-auto transform transition-transform duration-300 ease-in-out md:transform-none {sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}"
+		>
+			<TaskSidebar
+				tasks={filteredTasks}
+				selectedTaskId={selectedTask?.id ?? null}
+				onSelectTask={handleSelectTask}
+			/>
+		</div>
 
 		<ResponseArena
 			task={selectedTask}

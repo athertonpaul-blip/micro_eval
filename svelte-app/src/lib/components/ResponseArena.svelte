@@ -158,11 +158,11 @@
 		</div>
 	{:else if votingMode}
 		<!-- A vs B Voting Mode -->
-		<div class="max-w-6xl mx-auto p-6">
+		<div class="max-w-6xl mx-auto p-4 sm:p-6">
 			<!-- Task Header -->
-			<div class="mb-6 text-center">
-				<h2 class="text-2xl font-bold text-dark mb-2">{task.title}</h2>
-				<p class="text-muted">{task.description}</p>
+			<div class="mb-4 sm:mb-6 text-center">
+				<h2 class="text-xl sm:text-2xl font-bold text-dark mb-2">{task.title}</h2>
+				<p class="text-muted text-sm sm:text-base">{task.description}</p>
 			</div>
 
 			{#if voteResult}
@@ -229,7 +229,7 @@
 
 			<!-- A vs B Response Cards -->
 			{#if modelA && modelB}
-				<div class="grid grid-cols-2 gap-6">
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
 					<!-- Response A -->
 					<div
 						class="bg-white rounded-lg shadow-sm border-2 transition-all {voteResult?.selectedSide === 'A' ? 'ring-2 ring-green-400 border-green-400' : 'border-gray-200'}"
@@ -365,16 +365,16 @@
 		</div>
 	{:else}
 		<!-- Compare Mode (original behavior) -->
-		<div class="max-w-7xl mx-auto p-6">
+		<div class="max-w-7xl mx-auto p-4 sm:p-6">
 			<!-- Task Header -->
-			<div class="mb-6">
-				<h2 class="text-2xl font-bold text-dark mb-2">{task.title}</h2>
-				<p class="text-muted">{task.description}</p>
+			<div class="mb-4 sm:mb-6">
+				<h2 class="text-xl sm:text-2xl font-bold text-dark mb-2">{task.title}</h2>
+				<p class="text-muted text-sm sm:text-base">{task.description}</p>
 			</div>
 
 			<!-- Model Selection Checkboxes -->
-			<div class="mb-6 bg-white rounded-lg border border-gray-200 p-4">
-				<div class="flex items-center gap-2 mb-3">
+			<div class="mb-4 sm:mb-6 bg-white rounded-lg border border-gray-200 p-3 sm:p-4">
+				<div class="flex flex-wrap items-center gap-2 mb-3">
 					<span class="text-sm font-medium text-muted">Show models:</span>
 					<button
 						onclick={() => {
@@ -417,10 +417,7 @@
 					<p>No models selected. Check at least one model above to view responses.</p>
 				</div>
 			{:else}
-				<div
-					class="grid gap-6"
-					style="grid-template-columns: repeat({displayedModels.length}, minmax(300px, 1fr));"
-				>
+				<div class="compare-grid gap-4 sm:gap-6" style="--num-cols: {displayedModels.length};">
 					{#each displayedModels as modelKey}
 						{@const model = getModelInfo(modelKey)}
 						{@const content = task.responses[modelKey] || ''}
@@ -475,3 +472,28 @@
 		</div>
 	{/if}
 </div>
+
+<style>
+	.compare-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+	}
+
+	@media (min-width: 640px) {
+		.compare-grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.compare-grid {
+			grid-template-columns: repeat(min(var(--num-cols), 3), minmax(280px, 1fr));
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.compare-grid {
+			grid-template-columns: repeat(var(--num-cols), minmax(280px, 1fr));
+		}
+	}
+</style>

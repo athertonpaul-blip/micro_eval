@@ -10,9 +10,9 @@
 	let { tasks, selectedTaskId, onSelectTask }: Props = $props();
 </script>
 
-<aside class="w-80 bg-white border-r border-gray-200 overflow-y-auto">
+<aside class="w-80 max-w-[85vw] h-full bg-white border-r border-gray-200 overflow-y-auto shadow-lg md:shadow-none">
 	<div class="p-4">
-		<h2 class="text-lg font-semibold text-dark mb-4">Tasks</h2>
+		<h2 class="text-lg font-semibold text-dark mb-4">Tasks ({tasks.length})</h2>
 		{#if tasks.length === 0}
 			<p class="text-muted text-sm">No tasks available</p>
 		{:else}
