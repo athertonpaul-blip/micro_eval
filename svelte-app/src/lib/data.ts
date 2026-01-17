@@ -9,19 +9,29 @@ export function getEducatorTasks(): EducatorTasksData | null {
 	try {
 		// Try multiple paths for the JSON file
 		const possiblePaths = [
+			// When running from svelte-app directory
 			join(process.cwd(), 'static', 'data', 'educator_tasks.json'),
+			// When running from project root
 			join(process.cwd(), 'svelte-app', 'static', 'data', 'educator_tasks.json'),
-			join(process.cwd(), '..', 'generator', 'educator_tasks.json'),
+			// Relative to generator
+			join(process.cwd(), '..', 'generator', 'educator_tasks_filled.json'),
+			join(process.cwd(), 'generator', 'educator_tasks_filled.json'),
+			// Build output paths
+			join(process.cwd(), 'build', 'client', 'data', 'educator_tasks.json'),
+			join(process.cwd(), '.svelte-kit', 'output', 'client', 'data', 'educator_tasks.json'),
 		];
+
+		console.log('Looking for educator_tasks.json, cwd:', process.cwd());
 
 		for (const filePath of possiblePaths) {
 			if (existsSync(filePath)) {
+				console.log('Found educator_tasks.json at:', filePath);
 				const content = readFileSync(filePath, 'utf-8');
 				return JSON.parse(content) as EducatorTasksData;
 			}
 		}
 
-		console.warn('educator_tasks.json not found in any expected location');
+		console.warn('educator_tasks.json not found. Tried paths:', possiblePaths);
 		return null;
 	} catch (err) {
 		console.error('Failed to load educator tasks:', err);

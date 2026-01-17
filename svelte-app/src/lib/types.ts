@@ -116,12 +116,12 @@ export const MODELS = [
 	// Gemini models
 	{
 		key: 'gemini-pro',
-		name: 'Gemini Pro',
+		name: 'Gemini 3.0 Pro',
 		color: '#f97316' // orange-500
 	},
 	{
 		key: 'gemini',
-		name: 'Gemini 1.5 Pro',
+		name: 'Gemini 3.0 Flash',
 		color: '#fb923c' // orange-400
 	},
 	// Open models
