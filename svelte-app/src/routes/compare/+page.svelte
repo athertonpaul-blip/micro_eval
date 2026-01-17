@@ -3,13 +3,16 @@
 	import { page } from '$app/stores';
 	import Navbar from '$lib/components/Navbar.svelte';
 	import TaskSidebar from '$lib/components/TaskSidebar.svelte';
+	import HierarchicalSidebar from '$lib/components/HierarchicalSidebar.svelte';
 	import ResponseArena from '$lib/components/ResponseArena.svelte';
-	import type { Persona, TaskWithResponses } from '$lib/types';
+	import type { Persona, TaskWithResponses, Domain, EducatorTask } from '$lib/types';
 
 	interface Props {
 		data: {
 			tasks: TaskWithResponses[];
 			initialPersona: Persona;
+			educatorHierarchy: Domain[];
+			educatorFlatTasks: EducatorTask[];
 		};
 	}
 
@@ -30,15 +33,29 @@
 	// Check if voting mode is enabled via URL param
 	let votingMode = $derived($page.url.searchParams.get('voting') === 'true');
 
-	// Filter tasks by persona
+	// Check if we're in educator mode with hierarchy
+	let isEducatorMode = $derived(currentPersona === 'educator' && data.educatorHierarchy.length > 0);
+
+	// Filter tasks by persona (for non-educator personas)
 	let filteredTasks = $derived(data.tasks.filter((t) => t.persona === currentPersona));
 
-	// Auto-select first task when tasks load or persona changes
+	// Auto-select first task when tasks load or persona changes (only for non-educator)
 	$effect(() => {
-		if (filteredTasks.length > 0 && !selectedTask) {
+		if (!isEducatorMode && filteredTasks.length > 0 && !selectedTask) {
 			handleSelectTask(filteredTasks[0]);
 		}
 	});
+
+	// Convert educator task to TaskWithResponses format
+	function educatorTaskToTaskWithResponses(task: EducatorTask): TaskWithResponses {
+		return {
+			id: task.id,
+			title: task.title,
+			description: task.prompt,
+			persona: 'educator',
+			responses: task.responses || {}
+		};
+	}
 
 	function handlePersonaChange(persona: Persona) {
 		currentPersona = persona;
@@ -60,6 +77,10 @@
 		setTimeout(() => {
 			isLoading = false;
 		}, 600 + Math.random() * 400);
+	}
+
+	function handleSelectEducatorTask(task: EducatorTask) {
+		handleSelectTask(educatorTaskToTaskWithResponses(task));
 	}
 
 	function handleExit() {
@@ -160,11 +181,19 @@
 		<div
 			class="fixed md:relative top-0 bottom-0 left-0 z-50 md:z-auto transform transition-transform duration-300 ease-in-out md:transform-none {sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}"
 		>
-			<TaskSidebar
-				tasks={filteredTasks}
-				selectedTaskId={selectedTask?.id ?? null}
-				onSelectTask={handleSelectTask}
-			/>
+			{#if isEducatorMode}
+				<HierarchicalSidebar
+					hierarchy={data.educatorHierarchy}
+					selectedTaskId={selectedTask?.id ?? null}
+					onSelectTask={handleSelectEducatorTask}
+				/>
+			{:else}
+				<TaskSidebar
+					tasks={filteredTasks}
+					selectedTaskId={selectedTask?.id ?? null}
+					onSelectTask={handleSelectTask}
+				/>
+			{/if}
 		</div>
 
 		<ResponseArena

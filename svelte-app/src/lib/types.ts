@@ -16,6 +16,43 @@ export interface TaskWithResponses extends Task {
 	responses: Record<string, string>; // Allow any model keys from data.json
 }
 
+// Hierarchical educator task structure
+export interface EducatorTask {
+	id: string;
+	domain: string;
+	category: string;
+	useCase: string;
+	title: string;
+	prompt: string;
+	teacherInputs: string;
+	modelDoes: string;
+	persona: 'educator';
+	responses?: Record<string, string>;
+}
+
+export interface UseCase {
+	id: string;
+	name: string;
+	tasks: EducatorTask[];
+}
+
+export interface Category {
+	id: string;
+	name: string;
+	useCases: UseCase[];
+}
+
+export interface Domain {
+	id: string;
+	name: string;
+	categories: Category[];
+}
+
+export interface EducatorTasksData {
+	hierarchy: Domain[];
+	flatTasks: EducatorTask[];
+}
+
 export interface ModelResponse {
 	modelKey: string;
 	content: string;

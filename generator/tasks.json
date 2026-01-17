@@ -1,38 +1,2261 @@
 [
   {
-    "id": "edu_01",
+    "id": "edu_001",
     "persona": "educator",
-    "title": "Grade 5 Math Rubric",
-    "prompt": "Create a grading rubric for a 5th grade math project on fractions. Include 4 criteria with clear proficiency levels."
+    "title": "Draft 3 clear learning objectives",
+    "prompt": "Write 3 learning objectives for photosynthesis for Grade 3. Use action verbs; each under 12 words.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
   },
   {
-    "id": "edu_02",
+    "id": "edu_002",
     "persona": "educator",
-    "title": "Differentiation Strategy",
-    "prompt": "Suggest three differentiation strategies for teaching photosynthesis to a mixed-ability 7th grade science class."
+    "title": "Create a simple 4‑step lesson outline",
+    "prompt": "Create a 4‑step lesson outline for fractions. Include: starter, teach, practice, exit check with minutes.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
   },
   {
-    "id": "dev_01",
-    "persona": "developer",
-    "title": "API Documentation Generator",
-    "prompt": "Write a Python function that takes a Flask route and generates OpenAPI documentation for it automatically. Include type hints and error handling."
+    "id": "edu_003",
+    "persona": "educator",
+    "title": "Suggest 5 low‑cost/local materials",
+    "prompt": "List 5 low‑cost or no‑print materials for teaching the water cycle in a a rural school with limited resources school.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
   },
   {
-    "id": "dev_02",
-    "persona": "developer",
-    "title": "Database Schema Design",
-    "prompt": "Design a database schema for a learning management system that tracks students, courses, assignments, and grades. Provide SQL CREATE statements."
+    "id": "edu_004",
+    "persona": "educator",
+    "title": "Write 3 success criteria ('I can...')",
+    "prompt": "Write 3 learner-friendly success criteria for World War II at Grade 1, starting with 'I can...'. Keep each under 10 words.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
   },
   {
-    "id": "pol_01",
+    "id": "edu_005",
+    "persona": "educator",
+    "title": "List 3 likely misconceptions + quick fixes",
+    "prompt": "List 3 common misconceptions about basic algebra for Grade 2 and a one-line quick fix for each. Output as a two-column table.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_006",
+    "persona": "educator",
+    "title": "Question ladder (5 questions, easy→hard)",
+    "prompt": "Write 5 questions on cellular respiration for Grade 3, moving from recall to reasoning.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_007",
+    "persona": "educator",
+    "title": "Key vocabulary with student-friendly meanings",
+    "prompt": "Make a table of 6–10 key words for the solar system at Grade 4 with very simple meanings.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_008",
+    "persona": "educator",
+    "title": "Minute-by-minute timeline (first 15 minutes)",
+    "prompt": "Create a minute‑by‑minute plan for the first 15 minutes of a lesson on punctuation and grammar for 15. Keep each action under 10 words.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_009",
+    "persona": "educator",
+    "title": "Chalkboard/whiteboard layout plan",
+    "prompt": "Plan how to use the board for chemical reactions. List what goes on Left, Middle, Right. Keep to 6 bullets total.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_010",
+    "persona": "educator",
+    "title": "Group work roles + task card",
+    "prompt": "Create a small task card for ecosystems with 3 roles and 3 task steps.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_011",
+    "persona": "educator",
+    "title": "Objectives → 3 success criteria ('I can…')",
+    "prompt": "Turn this objective Students will be able to identify the main idea in a text into 3 learner-friendly success criteria for Grade 5, each starting 'I can…' (≤10 words).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_012",
+    "persona": "educator",
+    "title": "Minute-by-minute starter (first 10 minutes)",
+    "prompt": "Plan the first 10 minutes of a lesson on decimals and percentages for Grade 6, 20 learners. Output a table: Minute | Teacher action | Student action.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_013",
+    "persona": "educator",
+    "title": "Question ladder (recall → reasoning)",
+    "prompt": "Write 5 questions on ancient civilizations for Grade 7, moving from recall to reasoning.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_014",
+    "persona": "educator",
+    "title": "I–We–You sequence (3 short steps)",
+    "prompt": "Create an 'I–We–You' sequence for electricity at Grade 8 in 5 minutes. 1 line per step.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_015",
+    "persona": "educator",
+    "title": "'Do Now' retrieval (4 quick questions)",
+    "prompt": "Write 4 quick retrieval questions mixing fractions, decimals for Grade 9. One short line each.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_016",
+    "persona": "educator",
+    "title": "Worked example + partially worked example",
+    "prompt": "Provide a worked example for critical thinking at Grade 10, then a partially worked example with 2 missing steps.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_017",
+    "persona": "educator",
+    "title": "Examples vs non-examples (5 pairs)",
+    "prompt": "Create 5 pairs of examples/non-examples to teach the concept equivalent fractions for Grade 11.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_018",
+    "persona": "educator",
+    "title": "Frayer model builder",
+    "prompt": "Fill a simple Frayer model for semester at Grade 12: definition, features, 2 examples, 2 non-examples.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_019",
+    "persona": "educator",
+    "title": "Hinge question (diagnostic MCQ)",
+    "prompt": "Write a hinge question on photosynthesis. Use distractors based on: students thinking multiplication always makes numbers bigger. Mark the key.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_020",
+    "persona": "educator",
+    "title": "Mini-whiteboard check plan (5 prompts)",
+    "prompt": "Create 5 rapid-response prompts for mini-whiteboards on creative writing for Kindergarten with expected answers.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_021",
+    "persona": "educator",
+    "title": "Choral response script",
+    "prompt": "Write a short choral response script to practice: The sun is a star for a class of small (15 students).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_022",
+    "persona": "educator",
+    "title": "Think–Pair–Share prompt",
+    "prompt": "Give one Think–Pair–Share prompt for the human digestive system at Pre-K with two probes to deepen thinking.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_023",
+    "persona": "educator",
+    "title": "Board plan: worked steps L→R",
+    "prompt": "Plan the chalkboard layout for geometry basics in 3 steps: what to write Left/Middle/Right.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_024",
+    "persona": "educator",
+    "title": "4 exit ticket prompts",
+    "prompt": "Write 4 very short exit ticket prompts for climate change at Grade 1. One sentence each.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_025",
+    "persona": "educator",
+    "title": "Local‑context hook (1–2 sentence story)",
+    "prompt": "Write a 1–2 sentence story hook that links reading comprehension strategies to daily life in a an urban public school.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Lesson Plan generation"
+  },
+  {
+    "id": "edu_026",
+    "persona": "educator",
+    "title": "Sentence frames for speaking/writing (6)",
+    "prompt": "Give 6 sentence starters to help learners speak/write about multiplication tables at Grade 2.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_027",
+    "persona": "educator",
+    "title": "3-tier comprehension questions (literal/inferential/evaluative)",
+    "prompt": "From this passage a short story about friendship, write 3 literal, 3 inferential, and 2 evaluative questions for Grade 3.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_028",
+    "persona": "educator",
+    "title": "Picture-prompt wh-questions (from teacher description)",
+    "prompt": "Create 5 wh-questions pupils could answer about this scene: a hands-on science activity about magnets. Keep language simple for Grade 4.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_029",
+    "persona": "educator",
+    "title": "Sentence frames for answers (support struggling readers)",
+    "prompt": "Give 6 sentence starters to help learners answer questions about the American Revolution at Grade 5.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_030",
+    "persona": "educator",
+    "title": "Vocabulary pictureless cards (word + child-friendly meaning)",
+    "prompt": "Make a table of 8–12 key words for plant life cycles at Grade 6 with child-friendly meanings (≤8 words each).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_031",
+    "persona": "educator",
+    "title": "Sequencing strips (First/Next/Then/Finally)",
+    "prompt": "Write 4 short lines to retell a short story about a brave mouse using First, Next, Then, Finally for Grade 7.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_032",
+    "persona": "educator",
+    "title": "Dictation sentences (8 short)",
+    "prompt": "Write 8 short dictation sentences for Grade 8 featuring reading fluency. Max 8 words each.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_033",
+    "persona": "educator",
+    "title": "Decodable word list (15)",
+    "prompt": "List 15 decodable words for Grade 9 using the pattern CVC words.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_034",
+    "persona": "educator",
+    "title": "Write a short reading passage",
+    "prompt": "Write a short reading passage about probability for Grade 10. Use simple words and short sentences.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_035",
+    "persona": "educator",
+    "title": "Create 5 comprehension questions",
+    "prompt": "Write 5 questions for a passage on poetry analysis for Grade 11: 3 literal, 2 inferential.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_036",
+    "persona": "educator",
+    "title": "Provide 10 practice items",
+    "prompt": "Give 10 phonemic awareness practice items for Grade 12 on forces and motion.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Complimentary Content generation"
+  },
+  {
+    "id": "edu_037",
+    "persona": "educator",
+    "title": "Suggest 3 simple strategies",
+    "prompt": "Suggest 3 simple strategies for teaching map reading skills to 25 learners in 10 minutes. One line each.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_038",
+    "persona": "educator",
+    "title": "CRA map (Concrete–Representational–Abstract)",
+    "prompt": "Map CRA for main idea and details using paper, pencils, and basic classroom supplies: one activity at each stage.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_039",
+    "persona": "educator",
+    "title": "Spaced review slots (4-week)",
+    "prompt": "Make a light 4-week spaced-review plan for fractions, decimals, and percentages with 3 days per week.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_040",
+    "persona": "educator",
+    "title": "Think–Pair–Share prompt + 2 probes",
+    "prompt": "Give one Think–Pair–Share prompt for photosynthesis at Kindergarten, plus two probing follow-ups.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_041",
+    "persona": "educator",
+    "title": "Multi-grade adaptation (shared task + support/extend)",
+    "prompt": "Suggest a shared activity for fractions that works for Grades 1 and 10. Add one support idea and one extension idea.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_042",
+    "persona": "educator",
+    "title": "Behaviour routines (3 quick signals)",
+    "prompt": "Suggest 3 quick attention/transition signals suitable for 30 in a crowded room.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_043",
+    "persona": "educator",
+    "title": "Multi‑grade differentiation (3 ideas)",
+    "prompt": "Give 3 simple strategies to teach Mathematics and Science in a multi‑grade class (beginner, intermediate, and advanced).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_044",
+    "persona": "educator",
+    "title": "Give 3 quick checks for understanding",
+    "prompt": "List 3 fast exit‑ticket ideas to check understanding of the water cycle for Pre-K.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_045",
+    "persona": "educator",
+    "title": "Offer 3 ways to differentiate",
+    "prompt": "For World War II at Grade 1, give 3 support and 3 extension ideas.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Instructional Strategy Recommendation"
+  },
+  {
+    "id": "edu_046",
+    "persona": "educator",
+    "title": "Convert a paragraph into bullet points",
+    "prompt": "Turn this paragraph into simple bullets (5–7): (See student work sample below).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_047",
+    "persona": "educator",
+    "title": "Matching exercise (terms → meanings)",
+    "prompt": "Create a matching exercise with A terms and B meanings. Shuffle B. Provide an answer key. Lists: cat, bat, hat, mat, dog, log, fog, jog.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_048",
+    "persona": "educator",
+    "title": "True/False statements from a paragraph",
+    "prompt": "From this paragraph, write 3 True/False statements and provide the key. Text: (See student work sample below).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_049",
+    "persona": "educator",
+    "title": "True/False conversion with answer key",
+    "prompt": "From this paragraph, write 5 True/False statements and provide the key. Text: (See student work sample below).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_050",
+    "persona": "educator",
+    "title": "Cloze generator with target vocabulary + key",
+    "prompt": "Turn this text into a cloze by blanking these words: beautiful, wonderful, amazing, fantastic. Provide the answer key. Text: (See student work sample below).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_051",
+    "persona": "educator",
+    "title": "Jumbled sentence unscramble",
+    "prompt": "Create jumbled versions of these sentences and then show the correct order: 3.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_052",
+    "persona": "educator",
+    "title": "Matching pairs",
+    "prompt": "Make a matching exercise with list A terms and list B meanings: animal words, action words, describing words.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_053",
+    "persona": "educator",
+    "title": "Make a cloze (gap‑fill) with answer key",
+    "prompt": "Make a cloze activity from this text with 10 gaps. Provide the answer key. Text: (See student work sample below).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_054",
+    "persona": "educator",
+    "title": "Sort facts into a simple table",
+    "prompt": "Sort these facts into a table with columns Word, Definition, Example Sentence: plants need sunlight to grow, water is essential for life, the Earth rotates on its axis.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Alternative Format Creation"
+  },
+  {
+    "id": "edu_055",
+    "persona": "educator",
+    "title": "Zero‑print activity bank (5)",
+    "prompt": "List 5 zero‑print activities for basic algebra at Grade 2 and how to run each in one line.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Resource Recommendation"
+  },
+  {
+    "id": "edu_056",
+    "persona": "educator",
+    "title": "Local materials swap ideas (5)",
+    "prompt": "Suggest 5 substitutes using local materials for activities on cellular respiration given these supplies: textbooks, worksheets, and a whiteboard.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Resource Recommendation"
+  },
+  {
+    "id": "edu_057",
+    "persona": "educator",
+    "title": "Recommend 5 low‑data activity ideas",
+    "prompt": "Suggest 5 low‑data classroom activities for the solar system at Grade 3 using manipulatives, flashcards, and chart paper.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Resource Recommendation"
+  },
+  {
+    "id": "edu_058",
+    "persona": "educator",
+    "title": "Oral blending items (no letters)",
+    "prompt": "Create 5 oral blending items for English at Grade 4. Use sound segments only, then show the whole word.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonemic Awareness"
+  },
+  {
+    "id": "edu_059",
+    "persona": "educator",
+    "title": "Oral segmenting list (initial/medial/final)",
+    "prompt": "Make a 5-row table to segment words into sounds in Spanish for comprehension position: said, walked, looked, went.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonemic Awareness"
+  },
+  {
+    "id": "edu_060",
+    "persona": "educator",
+    "title": "Rhyme pairs",
+    "prompt": "List 10 rhyme pairs in French for the family -at. Keep words short.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonemic Awareness"
+  },
+  {
+    "id": "edu_061",
+    "persona": "educator",
+    "title": "Syllable clap list",
+    "prompt": "Give 3 words about punctuation and grammar in Mandarin and show syllable count for each.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonemic Awareness"
+  },
+  {
+    "id": "edu_062",
+    "persona": "educator",
+    "title": "GPC (letter–sound) checklist",
+    "prompt": "Create a GPC checklist for Hindi using these letters/sounds: sh, ch, th, wh. Add one example word per row.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonics & Decoding"
+  },
+  {
+    "id": "edu_063",
+    "persona": "educator",
+    "title": "Decodable word list (by pattern)",
+    "prompt": "Make 4 decodable words in Arabic using the pattern CVCE words.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonics & Decoding"
+  },
+  {
+    "id": "edu_064",
+    "persona": "educator",
+    "title": "Decodable sentences using taught GPCs",
+    "prompt": "Write 5 decodable sentences using only these letters/sounds ai, ay, ee, ea and high-frequency words the, and, is, was, they, have, said, what. Keep very simple.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonics & Decoding"
+  },
+  {
+    "id": "edu_065",
+    "persona": "educator",
+    "title": "Onset–rime word families",
+    "prompt": "Create 6 words for the rime -at and show them next to the family name.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonics & Decoding"
+  },
+  {
+    "id": "edu_066",
+    "persona": "educator",
+    "title": "Word sorts (by pattern)",
+    "prompt": "Sort these words into two pattern columns: A=CVC, B=CVCE. Words: addition, subtraction, multiplication, division.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonics & Decoding"
+  },
+  {
+    "id": "edu_067",
+    "persona": "educator",
+    "title": "Decodable mini‑story (50–70 words)",
+    "prompt": "Write a short decodable story using tion, sion and the, and, is, was, they, have, said, what only. Topic: chemical reactions. Then list the GPCs used.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Phonics & Decoding"
+  },
+  {
+    "id": "edu_068",
+    "persona": "educator",
+    "title": "1‑minute reading passage (60–90 words)",
+    "prompt": "Write a Grade 5 passage in Swahili about ecosystems (60–90 words). Add 3 literal questions.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Fluency & Comprehension"
+  },
+  {
+    "id": "edu_069",
+    "persona": "educator",
+    "title": "Before/During/After prompts for a read‑aloud",
+    "prompt": "Give 2 BDA prompts each for a read‑aloud on decimals and percentages at Grade 6 in Portuguese.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Fluency & Comprehension"
+  },
+  {
+    "id": "edu_070",
+    "persona": "educator",
+    "title": "Retell frame",
+    "prompt": "Create a simple retell frame for a story about friendship at Grade 7. Use: First, Next, Then, Finally.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Fluency & Comprehension"
+  },
+  {
+    "id": "edu_071",
+    "persona": "educator",
+    "title": "Vocabulary micro‑lesson (Tier 1/2)",
+    "prompt": "Teach the word beautiful in English for Grade 8: 1‑line meaning, 1 example, 1 check question.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Fluency & Comprehension"
+  },
+  {
+    "id": "edu_072",
+    "persona": "educator",
+    "title": "Handwriting cues (letter formation)",
+    "prompt": "Give stroke‑order cues for these letters in print: a, b, c, d, e. Keep each cue one short line.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Early Writing"
+  },
+  {
+    "id": "edu_073",
+    "persona": "educator",
+    "title": "Dictation set (6 words + 2 sentences)",
+    "prompt": "Make a dictation set in Spanish that uses ck, ng, nk and the, and, is, was, they, have, said, what: 6 words + 2 short sentences.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Early Writing"
+  },
+  {
+    "id": "edu_074",
+    "persona": "educator",
+    "title": "Sentence scramble (build syntax)",
+    "prompt": "Scramble these sentences in French and provide the correct order key: 5.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Early Writing"
+  },
+  {
+    "id": "edu_075",
+    "persona": "educator",
+    "title": "Capitalisation & full stop practice",
+    "prompt": "Write 8 short sentences without capital letters/full stops for learners to fix in Mandarin. Provide the corrected versions.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Early Writing"
+  },
+  {
+    "id": "edu_076",
+    "persona": "educator",
+    "title": "Letter‑sound mastery checklist",
+    "prompt": "Make a mastery checklist for these GPCs on next Monday: sh, ch, th, wh.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Assessment & Feedback"
+  },
+  {
+    "id": "edu_077",
+    "persona": "educator",
+    "title": "Running‑record style notes (simple)",
+    "prompt": "Create a simple running‑record table for this passage: an informational article about weather patterns. Include columns Word, Read as, Correct?, Note.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Assessment & Feedback"
+  },
+  {
+    "id": "edu_078",
+    "persona": "educator",
+    "title": "Miscue categories quick guide",
+    "prompt": "Give a short guide to common reading errors: Meaning, Structure, Visual, each with one example.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Assessment & Feedback"
+  },
+  {
+    "id": "edu_079",
+    "persona": "educator",
+    "title": "Phonics error pattern summary",
+    "prompt": "From these errors, list 3 phonics patterns causing trouble and one fix for each: run-on sentences and comma splices.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Literacy – Assessment & Feedback"
+  },
+  {
+    "id": "edu_080",
+    "persona": "educator",
+    "title": "Counting sequence (for/back, start anywhere)",
+    "prompt": "Write a counting sequence starting at Monday going forward within 1-10 for 100 words steps.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Number Sense"
+  },
+  {
+    "id": "edu_081",
+    "persona": "educator",
+    "title": "Missing numbers (number line mental)",
+    "prompt": "Create 10 missing‑number items within 1-20. Vary positions of the blanks.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Number Sense"
+  },
+  {
+    "id": "edu_082",
+    "persona": "educator",
+    "title": "Number names ↔ digits (bilingual)",
+    "prompt": "Make a 10‑row table converting digits↔number words in English/Spanish within 1-100.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Number Sense"
+  },
+  {
+    "id": "edu_083",
+    "persona": "educator",
+    "title": "Subitising with tallies (text)",
+    "prompt": "Produce 3 tallies (e.g., ||||) within 10-50 and the answer.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Number Sense"
+  },
+  {
+    "id": "edu_084",
+    "persona": "educator",
+    "title": "Ten‑frame text strips",
+    "prompt": "Show 4 ten‑frame style strips for these numbers: 1, 2, 3, 4, 5. Use X for filled, - for empty.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Number Sense"
+  },
+  {
+    "id": "edu_085",
+    "persona": "educator",
+    "title": "Number bonds to 10/20",
+    "prompt": "List 5 number bond pairs that make end of term. No repeats.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Number Sense"
+  },
+  {
+    "id": "edu_086",
+    "persona": "educator",
+    "title": "Part–part–whole examples",
+    "prompt": "Give 6 part–part–whole examples for 24. Vary the parts.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Number Sense"
+  },
+  {
+    "id": "edu_087",
+    "persona": "educator",
+    "title": "Place value (tens & ones)",
+    "prompt": "Create 8 numbers within 1-1000 and split into tens and ones in a table.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Number Sense"
+  },
+  {
+    "id": "edu_088",
+    "persona": "educator",
+    "title": "Daily 4 (mixed practice)",
+    "prompt": "Create a 'Daily 4' set within 1-10 using addition and subtraction. Add one local‑context word problem about ancient civilizations.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Operations & Problems"
+  },
+  {
+    "id": "edu_089",
+    "persona": "educator",
+    "title": "Add/subtract within 20 (structured)",
+    "prompt": "Generate 10 addition/subtraction items within 1-20 split into: facts to 10, make‑10, teen‑numbers.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Operations & Problems"
+  },
+  {
+    "id": "edu_090",
+    "persona": "educator",
+    "title": "Compare numbers (</>/=)",
+    "prompt": "Write 3 compare‑the‑numbers pairs within 1-100 and leave the symbol blank (</>/=). Provide key.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Operations & Problems"
+  },
+  {
+    "id": "edu_091",
+    "persona": "educator",
+    "title": "Skip counting (2s/5s/10s)",
+    "prompt": "Make a skip‑count sequence by 2 starting at next week for 200 words numbers. Add 'Rule: count by 3'.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Operations & Problems"
+  },
+  {
+    "id": "edu_092",
+    "persona": "educator",
+    "title": "Word problem templates (local context)",
+    "prompt": "Write 5 very short addition word problems using a mixed-ability classroom with names/objects: apples, oranges, and bananas. Provide the answers.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Operations & Problems"
+  },
+  {
+    "id": "edu_093",
+    "persona": "educator",
+    "title": "Error hunt (find & fix)",
+    "prompt": "Create 5 worked examples for addition with one common error each. Identify the error and give the correct working.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Operations & Problems"
+  },
+  {
+    "id": "edu_094",
+    "persona": "educator",
+    "title": "Number talk prompts (K–2)",
+    "prompt": "Give 3 number talk prompts around December focusing on think-aloud, with one sample student strategy.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Classroom Instruction"
+  },
+  {
+    "id": "edu_095",
+    "persona": "educator",
+    "title": "Concrete–Representational–Abstract steps (add within 10)",
+    "prompt": "Plan CRA steps to teach addition within 10 using recycled materials and natural objects. One short line per stage.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Classroom Instruction"
+  },
+  {
+    "id": "edu_096",
+    "persona": "educator",
+    "title": "Quick fluency routine (3 minutes)",
+    "prompt": "Design a 3‑minute fluency routine for accuracy within 10-50 in 3 short steps.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Classroom Instruction"
+  },
+  {
+    "id": "edu_097",
+    "persona": "educator",
+    "title": "Oral counting check sheet",
+    "prompt": "Make a short oral counting check sheet for step-by-step counting within 1-1000.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Assessment & Feedback"
+  },
+  {
+    "id": "edu_098",
+    "persona": "educator",
+    "title": "Number recognition probe",
+    "prompt": "Build a quick probe table to check recognition of these digits: 2-digit.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Assessment & Feedback"
+  },
+  {
+    "id": "edu_099",
+    "persona": "educator",
+    "title": "Single‑digit addition facts tracker",
+    "prompt": "Create a tracker for mastery of addition fact families: plants need sunlight to grow, water is essential for life, the Earth rotates on its axis.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Assessment & Feedback"
+  },
+  {
+    "id": "edu_100",
+    "persona": "educator",
+    "title": "Error pattern summary (numeracy)",
+    "prompt": "From these samples, list 3 common error patterns in numeracy and one fix for each: A, B, C, D.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "FLN Numeracy – Assessment & Feedback"
+  },
+  {
+    "id": "edu_101",
+    "persona": "educator",
+    "title": "Translate a short passage in plain language",
+    "prompt": "Translate to Spanish using everyday words: (See student work sample below).",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Content Translation"
+  },
+  {
+    "id": "edu_102",
+    "persona": "educator",
+    "title": "Simplify before translate",
+    "prompt": "First rewrite the text in simple language, then translate to French. Keep both short.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Content Translation"
+  },
+  {
+    "id": "edu_103",
+    "persona": "educator",
+    "title": "Phonics‑friendly transliteration list",
+    "prompt": "Provide a simple transliteration/phonetic helper list for these words from Spanish to French: beautiful, wonderful, amazing, fantastic.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Content Translation"
+  },
+  {
+    "id": "edu_104",
+    "persona": "educator",
+    "title": "Create bilingual key vocabulary list",
+    "prompt": "Make a 2‑column list of 10 key words about electricity in French → Mandarin with simple meanings.",
+    "domain": "Teaching",
+    "category": "Content & Pedagogy Support",
+    "useCase": "Content Translation"
+  },
+  {
+    "id": "edu_105",
+    "persona": "educator",
+    "title": "'Two Stars and a Wish' comments",
+    "prompt": "Write 'Two Stars and a Wish' for improve reading comprehension by 20% based on this work: bullet points from a science observation.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_106",
+    "persona": "educator",
+    "title": "Rewrite feedback to be kind, clear, actionable",
+    "prompt": "Rewrite this feedback to be kind, clear, and actionable for Grade 9: a poem by Robert Frost.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_107",
+    "persona": "educator",
+    "title": "One‑line WWW/EBI",
+    "prompt": "Give one 'What Went Well' and one 'Even Better If' based on: rough draft ideas for a persuasive essay.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_108",
+    "persona": "educator",
+    "title": "Error‑code summary for a class set",
+    "prompt": "Make an error‑code list for marking with short meanings and fix actions from: incorrect subject-verb agreement.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_109",
+    "persona": "educator",
+    "title": "Next‑step targets (3 levels)",
+    "prompt": "Set one next‑step target for each group (Struggling/On‑track/Extend) towards master multiplication facts through 12.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_110",
+    "persona": "educator",
+    "title": "Whole-class feedback sheet",
+    "prompt": "Draft a whole-class feedback sheet based on: strong participation and improved test scores; misplaced decimal points; next focus fluency.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_111",
+    "persona": "educator",
+    "title": "Model comment bank (10) by criterion",
+    "prompt": "Write 10 short comment bank lines linked to clarity, organization, and evidence for Grade 10: one positive, one next step.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_112",
+    "persona": "educator",
+    "title": "Parent‑friendly feedback note",
+    "prompt": "Write a parent‑friendly note about progress towards write a five-paragraph essay independently using this summary: math problem-solving steps. Tone: encouraging.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_113",
+    "persona": "educator",
+    "title": "Bilingual feedback sentence bank (10)",
+    "prompt": "Create 10 short feedback sentences for Mathematics in English with Spanish equivalents.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_114",
+    "persona": "educator",
+    "title": "Actionable annotation phrases (10)",
+    "prompt": "List 10 brief annotation phrases teachers can write in margins for vocabulary development in Science.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_115",
+    "persona": "educator",
+    "title": "Rubric score → plain‑language comment",
+    "prompt": "Turn this rubric info into a 2–3 sentence plain‑language comment: organization and clarity, Grade 11, well-structured paragraphs with clear topic sentences.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_116",
+    "persona": "educator",
+    "title": "Feed‑forward checklist for the next task",
+    "prompt": "Make a 5‑item checklist to guide improvement on the next writing a persuasive paragraph, focusing on needs improvement in using supporting details.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Written assessment feedback"
+  },
+  {
+    "id": "edu_117",
+    "persona": "educator",
+    "title": "Write 8 quiz items with answer key",
+    "prompt": "Create 8 multiple choice questions on creative writing for Grade 12 with answer key.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_118",
+    "persona": "educator",
+    "title": "Short-answer test (5) + model answers",
+    "prompt": "Write 5 short-answer questions on the human digestive system for Kindergarten. Provide one-line model answers.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_119",
+    "persona": "educator",
+    "title": "MCQ item with plausible distractors",
+    "prompt": "Write one MCQ for un-, re-, pre-. Correct: The answer is 42. Base 3 distractors on these misconceptions: confusing there/their/they're. Mark the key.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_120",
+    "persona": "educator",
+    "title": "Multiple True/False (MTF) set",
+    "prompt": "Create 4 true/false statements on geometry basics. Mix true and false. Provide the key.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_121",
+    "persona": "educator",
+    "title": "Rubric simplifier (child-friendly)",
+    "prompt": "Simplify this rubric a chapter from Charlotte's Web into 3–4 child-friendly lines using plain words (or emojis) for levels.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_122",
+    "persona": "educator",
+    "title": "Hinge question (diagnostic MCQ)",
+    "prompt": "Write a hinge question on cause and effect. Use distractors based on: believing heavier objects fall faster. Provide the correct option.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_123",
+    "persona": "educator",
+    "title": "Multiple True–False (MTF) set",
+    "prompt": "Create 5 T/F statements on climate change (mix true and false) and provide the key.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_124",
+    "persona": "educator",
+    "title": "Retrieval quiz mix (now/last week/last month)",
+    "prompt": "Make a 12-item retrieval quiz: 4 now, 4 last week, 4 last month on plant biology and ecosystems. Include answers.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_125",
+    "persona": "educator",
+    "title": "Distractor ideas for MCQs (per item)",
+    "prompt": "Give 3 plausible distractors for this MCQ using common misconceptions: -ing, -ed, -er | Key: Plants use photosynthesis.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_126",
+    "persona": "educator",
+    "title": "Short marking guide (model answers)",
+    "prompt": "Provide concise model answers (one line each) for these items: 5.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_127",
+    "persona": "educator",
+    "title": "Randomised number set generator",
+    "prompt": "Generate 6 practice numbers/problems for subtraction within 1-10.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_128",
+    "persona": "educator",
+    "title": "Create a simple 4‑level rubric",
+    "prompt": "Make a 3‑criterion rubric (4 levels: Beginning→Excellent) for solving multi-step word problems. Keep descriptions one line.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Assessment Generation"
+  },
+  {
+    "id": "edu_129",
+    "persona": "educator",
+    "title": "Draft a neutral observation checklist (not diagnosis)",
+    "prompt": "Create a neutral observation checklist for a student struggling with reading in Grade 5. Add a reminder to refer to specialists if needed.",
+    "domain": "Teaching",
+    "category": "Assessment & Feedback",
+    "useCase": "Learning disabilities Detection"
+  },
+  {
+    "id": "edu_130",
+    "persona": "educator",
+    "title": "Summarise teacher reflection into strengths and next steps",
+    "prompt": "From this reflection, list 3 strengths and 3 next steps: brainstormed vocabulary words.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Coaching"
+  },
+  {
+    "id": "edu_131",
+    "persona": "educator",
+    "title": "Rehearse explanation: 3-sentence version",
+    "prompt": "Write a clear 3-sentence explanation of reading comprehension strategies for parents. Keep sentences short.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Coaching"
+  },
+  {
+    "id": "edu_132",
+    "persona": "educator",
+    "title": "One‑minute reflection prompt bank (6)",
+    "prompt": "Give 6 quick reflection prompts for a teacher working on critical analysis.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Coaching"
+  },
+  {
+    "id": "edu_133",
+    "persona": "educator",
+    "title": "Write one SMART goal for next lesson",
+    "prompt": "Write one SMART goal for improving application by Friday. Keep it realistic.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Coaching"
+  },
+  {
+    "id": "edu_134",
+    "persona": "educator",
+    "title": "Cold‑call sequence (3 safe prompts)",
+    "prompt": "Write 3 gentle cold‑call prompts for multiplication tables at Pre-K to include quieter students.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Simulations for Teaching Practice"
+  },
+  {
+    "id": "edu_135",
+    "persona": "educator",
+    "title": "Generate 3 likely learner responses",
+    "prompt": "Give 3 likely student answers to this question on the American Revolution at Grade 1: How can I differentiate instruction for mixed-ability groups?. Label each.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Simulations for Teaching Practice"
+  },
+  {
+    "id": "edu_136",
+    "persona": "educator",
+    "title": "Explicit-instruction checklist",
+    "prompt": "Produce an 8-item explicit-instruction checklist (e.g., I–We–You, CFU, guided practice) focused on synthesis.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Classroom Observation Analysis"
+  },
+  {
+    "id": "edu_137",
+    "persona": "educator",
+    "title": "Evidence‑only rewrite",
+    "prompt": "Rewrite these observation notes to be evidence‑only (no judgment words): bullet points from a science observation.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Classroom Observation Analysis"
+  },
+  {
+    "id": "edu_138",
+    "persona": "educator",
+    "title": "Turn observation notes into feedback",
+    "prompt": "Summarise these observation notes and add 3 specific suggestions: rough draft ideas for a persuasive essay.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Classroom Observation Analysis"
+  },
+  {
+    "id": "edu_139",
+    "persona": "educator",
+    "title": "30-second attention signal script",
+    "prompt": "Write a 5-line attention signal for Grade 2, class size medium (25 students), in a noisy room.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_140",
+    "persona": "educator",
+    "title": "Smooth transition plan (activity→activity)",
+    "prompt": "Plan a 3-step transition from basic addition to multi-digit multiplication in 45 minutes minutes. Keep each step <10 words.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_141",
+    "persona": "educator",
+    "title": "Seating swap for pair/triad work (crowded room)",
+    "prompt": "Design a quick seating swap for 35 in limited technology access. 3 steps + describe where each row moves.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_142",
+    "persona": "educator",
+    "title": "Differentiate one task (support/typical/extend)",
+    "prompt": "Differentiate this task on plant life cycles for Grade 3: Support, Typical, Extend. One line each.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_143",
+    "persona": "educator",
+    "title": "Explain a concept in 3 sentences (student-friendly)",
+    "prompt": "Explain the scientific method to Grade 4 in 3 short sentences using everyday words.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_144",
+    "persona": "educator",
+    "title": "Local-context analogy/metaphor",
+    "prompt": "Give an analogy for place value using an inclusive classroom with diverse learners. Add one line explaining why it helps.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_145",
+    "persona": "educator",
+    "title": "Common misconceptions + quick fixes (3)",
+    "prompt": "List 3 likely misconceptions about probability at Grade 5 and one quick fix each.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_146",
+    "persona": "educator",
+    "title": "Five quick CFU prompts (no-tech)",
+    "prompt": "Write 5 CFU prompts for poetry analysis at Grade 6 and the expected short answers.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_147",
+    "persona": "educator",
+    "title": "Exit ticket ideas (4)",
+    "prompt": "Write 4 exit-ticket prompts for forces and motion at Grade 7. Each 1 line.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_148",
+    "persona": "educator",
+    "title": "Low-cost material substitutions (5)",
+    "prompt": "Suggest 5 substitutes for this activity a hands-on science experiment using local materials: 8.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_149",
+    "persona": "educator",
+    "title": "Large-class routines (3)",
+    "prompt": "List 3 large-class routines for map reading skills with 15 in large class sizes.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_150",
+    "persona": "educator",
+    "title": "If behind time: 10-minute cut plan",
+    "prompt": "You have 60 minutes minutes left. From 4, decide: Keep, Shorten, Drop. One line each.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_151",
+    "persona": "educator",
+    "title": "Catch-up plan for an absent learner (15 min)",
+    "prompt": "Create a 15-minute catch-up plan for photosynthesis focusing on problem-solving using digital devices and internet access.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_152",
+    "persona": "educator",
+    "title": "Positive parent conversation script",
+    "prompt": "Write a 5-line script to speak with a parent about classroom behavior management to achieve improved reading comprehension scores. Tone: formal.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_153",
+    "persona": "educator",
+    "title": "De-escalation script (student upset)",
+    "prompt": "Write a calm 5-line script for an upset Grade 8 student (trigger: off-task behavior during independent work) and 2 follow-up choices.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_154",
+    "persona": "educator",
+    "title": "Comment bank lines by criterion (10)",
+    "prompt": "Write 10 short comment-bank lines linked to accuracy, completeness, and presentation for English Language Arts at Grade 9: one positive, one next step.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_155",
+    "persona": "educator",
+    "title": "Simple homework policy (clear & kind)",
+    "prompt": "Write 5 bullets for homework in Grade 5 Mathematics: expectations, time, how to get help, late work, contact.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_156",
+    "persona": "educator",
+    "title": "Marking workload reducer: codes + key",
+    "prompt": "Make 6 short marking codes for Social Studies with meanings and an example fix.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_157",
+    "persona": "educator",
+    "title": "Multi-grade split: 2-board directions",
+    "prompt": "Write board directions for Grade 3 and Grade 7 grades on fractions to run together for 90 minutes minutes.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_158",
+    "persona": "educator",
+    "title": "Quick formative data note",
+    "prompt": "Create a small note table to track evaluation for struggling readers: Student | Evidence | Next step.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_159",
+    "persona": "educator",
+    "title": "Stations in a small space (3 stations)",
+    "prompt": "Set 3 stations for the water cycle using paper, pencils, and basic classroom supplies. Plan 3×6-min rotations and a one-line movement rule.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_160",
+    "persona": "educator",
+    "title": "3 positively phrased class rules",
+    "prompt": "Write 3 positively phrased rules for Grade 10 focusing on improving literacy rates, reducing achievement gaps. Start each with 'Do…'",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_161",
+    "persona": "educator",
+    "title": "30-minute revision micro-plan",
+    "prompt": "Create a 30-minute revision plan for World War II before end of the week focusing on written expression and mathematical reasoning.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_162",
+    "persona": "educator",
+    "title": "Simple make-up assessment plan",
+    "prompt": "Propose a make-up assessment for basic algebra testing reading comprehension, writing fluency, and critical thinking in 2 hours. Include retake rule and feedback step.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_163",
+    "persona": "educator",
+    "title": "Safety briefing (lab/PE)",
+    "prompt": "Write 5 safety points for a collaborative group project at Grade 11. Each bullet: rule | reason.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_164",
+    "persona": "educator",
+    "title": "Sentence frames for ELLs (6)",
+    "prompt": "Provide 6 sentence frames to help ELLs analyze student data about cellular respiration.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_165",
+    "persona": "educator",
+    "title": "Teacher wellbeing micro-habits (busy day)",
+    "prompt": "Suggest 3 micro-habits for a busy teacher with mixed ability levels. Include when and duration.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_166",
+    "persona": "educator",
+    "title": "Data talk with a student (growth focus)",
+    "prompt": "Write a 5-line script to discuss progress from personalized learning recommendations toward by spring break after 45 minutes. Add one mini-goal.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_167",
+    "persona": "educator",
+    "title": "Peer observation focus questions (5)",
+    "prompt": "Write 5 peer-observation questions focused on comprehension that are kind and specific.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_168",
+    "persona": "educator",
+    "title": "'Plan–Do–Review' cycle note",
+    "prompt": "Summarise a Plan–Do–Review cycle for accuracy using these notes: math problem-solving steps.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_169",
+    "persona": "educator",
+    "title": "Answer a focused ‘how‑to’ question",
+    "prompt": "How can I How do I effectively use formative assessment? for Grade 4 Science? Give simple steps.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Teaching Queries"
+  },
+  {
+    "id": "edu_170",
+    "persona": "educator",
+    "title": "Feedback sentence starters (10)",
+    "prompt": "Provide 10 sentence starters for kind, specific peer feedback among teachers.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Peer Collaboration"
+  },
+  {
+    "id": "edu_171",
+    "persona": "educator",
+    "title": "Merge two short plans into one",
+    "prompt": "Combine these two outlines into one clear plan without repetition: direct instruction with guided practice inquiry-based learning with hands-on activities.",
+    "domain": "Teaching",
+    "category": "TPD",
+    "useCase": "Peer Collaboration"
+  },
+  {
+    "id": "edu_172",
+    "persona": "educator",
+    "title": "Talk‑time estimate from notes",
+    "prompt": "Estimate teacher vs student talk percentage from these notes and give 2 ways to balance: brainstormed vocabulary words.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Classroom engagement analytics"
+  },
+  {
+    "id": "edu_173",
+    "persona": "educator",
+    "title": "CFU tally template",
+    "prompt": "Create a quick tally template to track CFU during practice for: My summer vacation was amazing! My family and I went to visit my grandparents who live near the beach. We spent two weeks there and I had so much fun. Every morning, I would wake up early and run to the beach to collect seashells. My grandmother taught me how to make cookies and my grandfather showed me how to fish. One day, we caught three fish and cooked them for dinner! I also made new friends with some kids who were staying nearby. We played soccer on the beach and built sandcastles together. The best part was when we saw dolphins swimming in the ocean. I took lots of pictures to show my classmates. I was sad when it was time to go home, but I'm happy because we're planning to visit again next year. This was the best summer ever!.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Classroom engagement analytics"
+  },
+  {
+    "id": "edu_174",
+    "persona": "educator",
+    "title": "Classify behaviour notes into categories",
+    "prompt": "From these notes, count on‑task/off‑task/neutral and show 3 examples each: bullet points from a science observation.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Classroom engagement analytics"
+  },
+  {
+    "id": "edu_175",
+    "persona": "educator",
+    "title": "Error pattern summary",
+    "prompt": "From these answers, find 3 common errors and suggest one fix each: 1, 2, 3, 4.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Remedial"
+  },
+  {
+    "id": "edu_176",
+    "persona": "educator",
+    "title": "Differentiated practice sets (support vs extend)",
+    "prompt": "Make 4 support questions and 4 extension questions on the solar system for Grade 12.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Remedial"
+  },
+  {
+    "id": "edu_177",
+    "persona": "educator",
+    "title": "Quick re-teach script (90 seconds)",
+    "prompt": "Write a 90-second re-teach script to fix that heavier objects fall faster than lighter ones in reading fluency for Kindergarten.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Remedial"
+  },
+  {
+    "id": "edu_178",
+    "persona": "educator",
+    "title": "Design a 15‑minute catch‑up mini‑lesson",
+    "prompt": "Design a 15‑minute mini‑lesson to fix difficulty with multi-digit multiplication for Pre-K. Include steps, 5 practice items, exit check.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Remedial"
+  },
+  {
+    "id": "edu_179",
+    "persona": "educator",
+    "title": "No-hands questioning script",
+    "prompt": "Write a short no-hands questioning script for punctuation and grammar at Grade 1 including a wait-time cue.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Classroom Engagement Tools"
+  },
+  {
+    "id": "edu_180",
+    "persona": "educator",
+    "title": "Inclusive group roles (clear duties)",
+    "prompt": "List 4 group roles for a an independent reading task with one-line duties (Reader, Timekeeper, Encourager, Reporter). Use simple words.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Classroom Engagement Tools"
+  },
+  {
+    "id": "edu_181",
+    "persona": "educator",
+    "title": "Call‑and‑response lines (5)",
+    "prompt": "Create 5 short call‑and‑response lines to boost energy during chemical reactions.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Classroom Engagement Tools"
+  },
+  {
+    "id": "edu_182",
+    "persona": "educator",
+    "title": "List 5 no‑tech engagement routines",
+    "prompt": "List 5 low‑tech engagement routines for ecosystems with 20 learners. One‑line directions each.",
+    "domain": "Teaching",
+    "category": "Classroom Instruction",
+    "useCase": "Classroom Engagement Tools"
+  },
+  {
+    "id": "edu_183",
+    "persona": "educator",
+    "title": "List 5 workload‑friendly self‑care tips",
+    "prompt": "Give 5 realistic self‑care tips for a teacher with this schedule: rough draft ideas for a persuasive essay.",
+    "domain": "Teaching",
+    "category": "Other Teacher Support",
+    "useCase": "Mental health Support"
+  },
+  {
+    "id": "edu_184",
+    "persona": "educator",
+    "title": "Pomodoro/day pacing plan",
+    "prompt": "Create a short time-boxed plan for 15 minutes covering: reading assignment, vocabulary quiz, and group discussion. Include 5-minute breaks.",
+    "domain": "Teaching",
+    "category": "Other Teacher Support",
+    "useCase": "Mental health Support"
+  },
+  {
+    "id": "edu_185",
+    "persona": "educator",
+    "title": "Write a short script to seek peer support",
+    "prompt": "Write a respectful 5‑line script to ask the school counselor for support about a student showing signs of anxiety.",
+    "domain": "Teaching",
+    "category": "Other Teacher Support",
+    "useCase": "Mental health Support"
+  },
+  {
+    "id": "edu_186",
+    "persona": "educator",
+    "title": "Self‑check checklist (10)",
+    "prompt": "Write a 10‑item self‑check checklist for decimals and percentages at Grade 2. Keep each item short.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Content & Exercises"
+  },
+  {
+    "id": "edu_187",
+    "persona": "educator",
+    "title": "Self-explanation prompts (5)",
+    "prompt": "Write 5 self-explanation prompts students can answer after studying ancient civilizations at Grade 3.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Content & Exercises"
+  },
+  {
+    "id": "edu_188",
+    "persona": "educator",
+    "title": "Generate 10 practice questions with answers",
+    "prompt": "Create 10 practice questions on electricity for Grade 4. Put answers at the end.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Content & Exercises"
+  },
+  {
+    "id": "edu_189",
+    "persona": "educator",
+    "title": "Peer‑review checklist (8)",
+    "prompt": "Create an 8‑item peer‑review checklist for a problem-solving at Grade 5.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Homework & Assignment Support"
+  },
+  {
+    "id": "edu_190",
+    "persona": "educator",
+    "title": "Turn a question into step‑by‑step hints",
+    "prompt": "Give 3–5 hints to solve this question without giving the final answer: What strategies help reluctant readers?.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Homework & Assignment Support"
+  },
+  {
+    "id": "edu_191",
+    "persona": "educator",
+    "title": "Common mistakes + fixes (5)",
+    "prompt": "List 5 common mistakes when learning written expression and a short fix for each.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Skills learning"
+  },
+  {
+    "id": "edu_192",
+    "persona": "educator",
+    "title": "Worked example → explain the error",
+    "prompt": "Given these examples, explain why the correct one works and fix the error in the flawed one: a news article about environmental conservation.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Skills learning"
+  },
+  {
+    "id": "edu_193",
+    "persona": "educator",
+    "title": "Micro‑lesson: definition + example + 3 items",
+    "prompt": "Teach mathematical reasoning to Grade 6: give a 2‑line definition, one example, and 3 practice items.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Skills learning"
+  },
+  {
+    "id": "edu_194",
+    "persona": "educator",
+    "title": "Sentence combining practice (6)",
+    "prompt": "Create 6 sentence-combining prompts from these simple sentences: 8.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Language Tools"
+  },
+  {
+    "id": "edu_195",
+    "persona": "educator",
+    "title": "Word family builder",
+    "prompt": "Build a small word‑family table from the root multi-step word problems for Grade 7.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Language Tools"
+  },
+  {
+    "id": "edu_196",
+    "persona": "educator",
+    "title": "Word meanings with example sentences",
+    "prompt": "Make a table of meanings and examples for these words for Grade 8: said, walked, looked, went.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Language Tools"
+  },
+  {
+    "id": "edu_197",
+    "persona": "educator",
+    "title": "'Start the problem' hint",
+    "prompt": "Give 3 hints that help start this problem without giving the answer: students struggling with reading comprehension.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Q/A Support"
+  },
+  {
+    "id": "edu_198",
+    "persona": "educator",
+    "title": "Answer one short factual question",
+    "prompt": "Answer this question briefly and add the district curriculum guide at the end: How do I assess student understanding formatively?.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Q/A Support"
+  },
+  {
+    "id": "edu_199",
+    "persona": "educator",
+    "title": "Self‑quiz (10)",
+    "prompt": "Create 10 short self‑quiz questions on creative writing for Grade 9 with an answer key.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Virtual Tutor"
+  },
+  {
+    "id": "edu_200",
+    "persona": "educator",
+    "title": "4-day spaced mini-review plan",
+    "prompt": "Make a 4-day spaced-review plan for the human digestive system using these items: 10. Keep each day to 5 minutes.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Virtual Tutor"
+  },
+  {
+    "id": "edu_201",
+    "persona": "educator",
+    "title": "Create a 5‑step study plan",
+    "prompt": "Make a 5‑step study plan for geometry basics over 5 days with daily goals.",
+    "domain": "Learning",
+    "category": "Self-Directed Learning",
+    "useCase": "Virtual Tutor"
+  },
+  {
+    "id": "edu_202",
+    "persona": "educator",
+    "title": "2‑role role‑play script (6 lines)",
+    "prompt": "Create a 2‑role role‑play about a student who consistently misses homework deadlines on climate change with 6 lines total.",
+    "domain": "Learning",
+    "category": "Experiential Learning",
+    "useCase": "Simulations for Students"
+  },
+  {
+    "id": "edu_203",
+    "persona": "educator",
+    "title": "Simple experiment steps (no lab)",
+    "prompt": "Write a no‑lab mini‑experiment for reading comprehension strategies using textbooks, worksheets, and a whiteboard in ≤6 steps. Add one safety note.",
+    "domain": "Learning",
+    "category": "Experiential Learning",
+    "useCase": "Simulations for Students"
+  },
+  {
+    "id": "edu_204",
+    "persona": "educator",
+    "title": "Three ‘what if’ scenario cards",
+    "prompt": "Give 3 short scenario cards for multiplication tables at age 5-6: each with Choice A/B and likely outcome.",
+    "domain": "Learning",
+    "category": "Experiential Learning",
+    "useCase": "Simulations for Students"
+  },
+  {
+    "id": "edu_205",
+    "persona": "educator",
+    "title": "Mnemonic maker (5)",
+    "prompt": "Create 5 simple mnemonics to remember: hypothesis, experiment, observation, conclusion.",
+    "domain": "Learning",
+    "category": "Exam Preparation & Feedback",
+    "useCase": "Revision tools"
+  },
+  {
+    "id": "edu_206",
+    "persona": "educator",
+    "title": "Make 12 flashcard pairs",
+    "prompt": "Create 12 flashcards for the American Revolution at Grade 10. Term | 10‑word meaning.",
+    "domain": "Learning",
+    "category": "Exam Preparation & Feedback",
+    "useCase": "Revision tools"
+  },
+  {
+    "id": "edu_207",
+    "persona": "educator",
+    "title": "Error log template items",
+    "prompt": "Make a small error‑log table for History until December 15th.",
+    "domain": "Learning",
+    "category": "Exam Preparation & Feedback",
+    "useCase": "Study planners & guides"
+  },
+  {
+    "id": "edu_208",
+    "persona": "educator",
+    "title": "Backwards plan from blueprint",
+    "prompt": "Create a weekly plan for 6 weeks based on this blueprint: fractions (30%), decimals (30%), percentages (40%). Heavier topics appear more often.",
+    "domain": "Learning",
+    "category": "Exam Preparation & Feedback",
+    "useCase": "Study planners & guides"
+  },
+  {
+    "id": "edu_209",
+    "persona": "educator",
+    "title": "Weekly study timetable template",
+    "prompt": "Draft a weekly study timetable for English and Social Studies with 2 hours/week until end of term.",
+    "domain": "Learning",
+    "category": "Exam Preparation & Feedback",
+    "useCase": "Study planners & guides"
+  },
+  {
+    "id": "edu_210",
+    "persona": "educator",
+    "title": "Mark scheme 'look‑fors' list",
+    "prompt": "From this question and criteria, list 5–7 'look‑fors' to use when marking: -tion, -ment; creativity, effort, and improvement.",
+    "domain": "Learning",
+    "category": "Exam Preparation & Feedback",
+    "useCase": "Instant feedback"
+  },
+  {
+    "id": "edu_211",
+    "persona": "educator",
+    "title": "Compare student answers to key",
+    "prompt": "Compare these student answers to the key and mark Yes/No: Student A, B, C, D; Key answer key for the chapter 5 assessment.",
+    "domain": "Learning",
+    "category": "Exam Preparation & Feedback",
+    "useCase": "Instant feedback"
+  },
+  {
+    "id": "edu_212",
+    "persona": "educator",
+    "title": "Home retrieval routine (5 minutes)",
+    "prompt": "Create a 5-minute home retrieval routine for Biology for age 7-8 using manipulatives, flashcards, and chart paper.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "Parental Guidance"
+  },
+  {
+    "id": "edu_213",
+    "persona": "educator",
+    "title": "Short parent message + 3 tips",
+    "prompt": "Write a simple parent message on helping with plant life cycles for age 9-10, using recycled materials and natural objects.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "Parental Guidance"
+  },
+  {
+    "id": "edu_214",
+    "persona": "educator",
+    "title": "10‑minute home practice routine",
+    "prompt": "Create a 10‑minute at‑home routine to improve difficulty with multi-digit multiplication using limited internet access and shared devices.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "Remedial"
+  },
+  {
+    "id": "edu_215",
+    "persona": "educator",
+    "title": "Group roles cards (4 roles)",
+    "prompt": "Create 4 group roles with one‑line duties for probability and 3-4 students.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "Peer Collaboration"
+  },
+  {
+    "id": "edu_216",
+    "persona": "educator",
+    "title": "Peer instruction question (PI)",
+    "prompt": "Write one conceptual multiple-choice question on character development targeting the misconception that heavier objects fall faster than lighter ones. Provide the correct option and a 1-line reason.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "Peer Collaboration"
+  },
+  {
+    "id": "edu_217",
+    "persona": "educator",
+    "title": "Discussion prompts for small groups",
+    "prompt": "Write 15 student discussion prompts about poetry analysis.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "Peer Collaboration"
+  },
+  {
+    "id": "edu_218",
+    "persona": "educator",
+    "title": "SMS‑length home literacy task",
+    "prompt": "Write an SMS to caregivers in Hindi suggesting a 5‑minute fluency game about forces and motion. ≤160 characters.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "FLN Home Support"
+  },
+  {
+    "id": "edu_219",
+    "persona": "educator",
+    "title": "SMS‑length home numeracy task",
+    "prompt": "Write an SMS in Arabic asking caregivers to play a quick vocabulary development game within 1-20. ≤160 characters.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "FLN Home Support"
+  },
+  {
+    "id": "edu_220",
+    "persona": "educator",
+    "title": "Bilingual parent note (how to help)",
+    "prompt": "Write a short parent note in Spanish then French explaining how to help with scientific inquiry in 3 steps.",
+    "domain": "Learning",
+    "category": "Collaborative tools",
+    "useCase": "FLN Home Support"
+  },
+  {
+    "id": "edu_221",
+    "persona": "educator",
+    "title": "Subject → job task examples (6)",
+    "prompt": "Give 6 simple examples of how Physics is used in jobs in a a resource-constrained environment.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Career Coaching"
+  },
+  {
+    "id": "edu_222",
+    "persona": "educator",
+    "title": "List 5 local job roles",
+    "prompt": "List 5 jobs in a rural school with limited resources linked to Chemistry and one key duty each.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Career Coaching"
+  },
+  {
+    "id": "edu_223",
+    "persona": "educator",
+    "title": "Time‑boxing plan for busy days",
+    "prompt": "Create a simple time‑boxing plan for this list in 20 minutes: reading assignment, vocabulary quiz, and group discussion.",
+    "domain": "Teaching",
+    "category": "Other Teacher Support",
+    "useCase": "Mental health Support"
+  },
+  {
+    "id": "edu_224",
+    "persona": "educator",
+    "title": "Peer buddy check‑in template",
+    "prompt": "Write a short check‑in template for a peer buddy meeting: schedule, focus, and one question.",
+    "domain": "Teaching",
+    "category": "Other Teacher Support",
+    "useCase": "Mental health Support"
+  },
+  {
+    "id": "edu_225",
+    "persona": "educator",
+    "title": "Simple help‑seeking plan",
+    "prompt": "Write a 3‑step plan for getting help about differentiation for gifted learners, with a short script to tell parent or guardian.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Mental health Support"
+  },
+  {
+    "id": "edu_226",
+    "persona": "educator",
+    "title": "Documents and deadlines checklist",
+    "prompt": "Make a checklist of documents and key deadlines for applying to Riverside Elementary School by October.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "College Admissions Guidance"
+  },
+  {
+    "id": "edu_227",
+    "persona": "educator",
+    "title": "Low-vision adaptation of a text",
+    "prompt": "Rewrite this text a short story about friendship in short lines (≤12 words). Bold key words to aid low-vision readers.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Special education"
+  },
+  {
+    "id": "edu_228",
+    "persona": "educator",
+    "title": "Oral-response version of a written task",
+    "prompt": "Turn this written task conducting a simple experiment into an oral version. Provide teacher script and expected student answers for Grade 11.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Special education"
+  },
+  {
+    "id": "edu_229",
+    "persona": "educator",
+    "title": "Bilingual scaffold for instructions",
+    "prompt": "Create bilingual instructions: French → Mandarin using simple words and short sentences.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Special education"
+  },
+  {
+    "id": "edu_230",
+    "persona": "educator",
+    "title": "Sensory-friendly task tweaks (3 ideas)",
+    "prompt": "Suggest 3 sensory-friendly tweaks for a math problem-solving challenge considering loud noises and sudden transitions. One line each: tweak | why it helps.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Special education"
+  },
+  {
+    "id": "edu_231",
+    "persona": "educator",
+    "title": "Suggest 3 classroom accommodations",
+    "prompt": "Suggest 3 classroom accommodations for extended time on assessments in Geography.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Special education"
+  },
+  {
+    "id": "edu_232",
+    "persona": "educator",
+    "title": "Translate short school notices",
+    "prompt": "Translate this school notice into Mandarin in plain language: an informational article about weather patterns.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Content Translation"
+  },
+  {
+    "id": "edu_233",
+    "persona": "educator",
+    "title": "Step‑by‑step campus directions",
+    "prompt": "Write simple walking directions from September 1st to the science laboratory using landmarks: the library, main office, and cafeteria.",
+    "domain": "Learning",
+    "category": "Other Student Support",
+    "useCase": "Navigation Assistant"
+  },
+  {
+    "id": "edu_234",
     "persona": "policymaker",
-    "title": "Digital Equity Policy",
-    "prompt": "Draft a policy framework for ensuring digital equity in K-12 schools, addressing device access, internet connectivity, and digital literacy. Keep it under 300 words."
+    "title": "Short report paragraph per student",
+    "prompt": "Write a short report for Alex Chen in Art with mark B+. Mention creative problem-solving and active participation and one next step focus on showing work in math problems.",
+    "domain": "Administration & Governance",
+    "category": "Administrative Tasks",
+    "useCase": "Report Card Generation"
   },
   {
-    "id": "pol_02",
+    "id": "edu_235",
     "persona": "policymaker",
-    "title": "AI Ethics Guidelines",
-    "prompt": "Create ethical guidelines for using AI tools in classroom assessment. Include considerations for bias, privacy, and transparency."
+    "title": "Chalk‑and‑talk pack list",
+    "prompt": "Make a supply list for a chalk‑and‑talk week for 25 students across 7 days in Art and Music.",
+    "domain": "Administration & Governance",
+    "category": "Administrative Tasks",
+    "useCase": "Resource Management & Allocation"
+  },
+  {
+    "id": "edu_236",
+    "persona": "policymaker",
+    "title": "Inventory list with reorder flags",
+    "prompt": "Flag items below 80% from this list: pencils: 30, notebooks: 30, erasers: 15. Output a table.",
+    "domain": "Administration & Governance",
+    "category": "Administrative Tasks",
+    "useCase": "Resource Management & Allocation"
+  },
+  {
+    "id": "edu_237",
+    "persona": "policymaker",
+    "title": "Attendance SMS templates (3)",
+    "prompt": "Write 3 SMS templates for scheduled maintenance on in two weeks that are respectful and short.",
+    "domain": "Administration & Governance",
+    "category": "Administrative Tasks",
+    "useCase": "Notifications & Alerts"
+  },
+  {
+    "id": "edu_238",
+    "persona": "policymaker",
+    "title": "SMS‑length notice for parents/staff",
+    "prompt": "Write a 160‑char SMS notice to school administrators about parent-teacher conferences on November 15th at 3:00 PM.",
+    "domain": "Administration & Governance",
+    "category": "Administrative Tasks",
+    "useCase": "Notifications & Alerts"
+  },
+  {
+    "id": "edu_239",
+    "persona": "policymaker",
+    "title": "CFU frequency snapshot",
+    "prompt": "From these notes, build a quick CFU snapshot for the lesson: math problem-solving steps.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "Teacher  Performance Monitoring  & Analysis"
+  },
+  {
+    "id": "edu_240",
+    "persona": "policymaker",
+    "title": "Summarise rubric scores",
+    "prompt": "From these scores, list 3 strengths and 3 improvement priorities: 85, 78, 92, 88, 76.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "Teacher  Performance Monitoring  & Analysis"
+  },
+  {
+    "id": "edu_241",
+    "persona": "policymaker",
+    "title": "Attendance % by week (summary)",
+    "prompt": "Compute attendance % per week from this small table and label trend: multiplication table for 1-10.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "Data dashboards"
+  },
+  {
+    "id": "edu_242",
+    "persona": "policymaker",
+    "title": "Plain‑text summary of small dataset",
+    "prompt": "Read this small table and give totals/averages and 3–5 insights: vocabulary word list.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "Data dashboards"
+  },
+  {
+    "id": "edu_243",
+    "persona": "policymaker",
+    "title": "Can‑do outcomes rewrite (5)",
+    "prompt": "Rewrite these training outcomes as 5 'I can…' statements for teachers: a poem by Robert Frost.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "Teacher Training Course Development"
+  },
+  {
+    "id": "edu_244",
+    "persona": "policymaker",
+    "title": "Micro-PD session outline (20 min)",
+    "prompt": "Design a 20-minute PD on critical analysis for fellow teachers: include goal, 3 activities, and a short practice task.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "Teacher Training Course Development"
+  },
+  {
+    "id": "edu_245",
+    "persona": "policymaker",
+    "title": "4‑session micro‑course outline",
+    "prompt": "Design a 4‑session training outline on map reading skills for students with outcomes and simple activities.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "Teacher Training Course Development"
+  },
+  {
+    "id": "edu_246",
+    "persona": "policymaker",
+    "title": "Skill‑by‑week tracker (8 weeks)",
+    "prompt": "Create an 8‑week tracker for these FLN skills starting next Monday: reading comprehension, writing fluency, and critical thinking.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "FLN Mastery Tracking"
+  },
+  {
+    "id": "edu_247",
+    "persona": "policymaker",
+    "title": "Reading log (simple)",
+    "prompt": "Make a simple reading log in Swahili for Grade 12, aiming for 70% minutes/day.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "FLN Mastery Tracking"
+  },
+  {
+    "id": "edu_248",
+    "persona": "policymaker",
+    "title": "FLN minimum kit list (local materials)",
+    "prompt": "List low‑cost items needed for FLN over 10 days for 30 students in Mathematics and Science.",
+    "domain": "Administration & Governance",
+    "category": "Academic Support & Monitoring",
+    "useCase": "FLN Mastery Tracking"
+  },
+  {
+    "id": "edu_249",
+    "persona": "policymaker",
+    "title": "Early‑warning checklist (no prediction)",
+    "prompt": "Draft a checklist of early‑warning signs (no prediction) for dropout in an urban public school. Add simple actions for each sign.",
+    "domain": "Administration & Governance",
+    "category": "Policy",
+    "useCase": "Dropout & Risk Prediction"
+  },
+  {
+    "id": "edu_250",
+    "persona": "policymaker",
+    "title": "Message tailoring lines (per group)",
+    "prompt": "For each stakeholder group, write a one‑line tailored message to support identify students needing intervention.",
+    "domain": "Administration & Governance",
+    "category": "Policy",
+    "useCase": "Stakeholder analysis"
+  },
+  {
+    "id": "edu_251",
+    "persona": "policymaker",
+    "title": "Map stakeholders by influence and interest",
+    "prompt": "Categorise these stakeholders by influence/interest (High/Low) and output a table: Ms. Smith (Principal), Mr. Jones (Counselor), Mrs. Garcia (Teacher).",
+    "domain": "Administration & Governance",
+    "category": "Policy",
+    "useCase": "Stakeholder analysis"
   }
 ]

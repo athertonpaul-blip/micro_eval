@@ -75,7 +75,7 @@ MODELS = {
 }
 
 # Paths
-SCRIPT_DIR = Path(_file_).parent
+SCRIPT_DIR = Path(__file__).parent
 TASKS_FILE = SCRIPT_DIR / "tasks.json"
 OUTPUT_FILE = SCRIPT_DIR.parent / "docs" / "data.json"
 SVELTE_DATA_FILE = SCRIPT_DIR.parent / "svelte-app" / "src" / "lib" / "data" / "tasks.json"
@@ -84,7 +84,7 @@ SVELTE_DATA_FILE = SCRIPT_DIR.parent / "svelte-app" / "src" / "lib" / "data" / "
 class ModelGenerator:
     """Handles generation from both API and local models."""
 
-    def _init_(self):
+    def __init__(self):
         self.local_models = {}
         self.api_key = OPENROUTER_API_KEY
 
@@ -120,10 +120,10 @@ class ModelGenerator:
             print(f"Error loading local model {model_id}: {e}")
             return None
 
-    def generate_api(self, model_id: str, prompt: str) -> Tuple[Optional[str], Optional[str]]:
-        """Generate response using OpenRouter API. Returns (response, error_message)."""
+    def generate_api(self, model_id: str, prompt: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
+        """Generate response using OpenRouter API. Returns (content, reasoning, error_message)."""
         if not self.api_key:
-            return None, "OPENROUTER_API_KEY not set in .env file"
+            return None, None, "OPENROUTER_API_KEY not set in .env file"
 
         headers = {
             "Authorization": f"Bearer {self.api_key}",
@@ -186,14 +186,14 @@ class ModelGenerator:
                     # For 400 errors (bad request), don't retry - the request is invalid
                     # But for other errors (429, 500, 502, 503), we should retry
                     if response.status_code == 400:
-                        return None, error_msg
+                        return None, None, error_msg
                     # For other errors, continue to retry logic below
                     if attempt < max_retries - 1:
                         wait_time = 5 * (2 ** attempt)
                         print(f"  Retrying in {wait_time} seconds...")
                         time.sleep(wait_time)
                         continue
-                    return None, error_msg
+                    return None, None, error_msg
                 
                 response.raise_for_status()
                 data = response.json()
@@ -206,13 +206,13 @@ class ModelGenerator:
                     error_msg = f"No 'choices' key in API response. Response keys: {list(data.keys())}"
                     print(f"API Error for {model_id}: {error_msg}")
                     print(f"  Full response: {str(data)[:500]}")
-                    return None, error_msg
+                    return None, None, error_msg
                 
                 if len(data["choices"]) == 0:
                     error_msg = "Empty 'choices' array in API response"
                     print(f"API Error for {model_id}: {error_msg}")
                     print(f"  Full response: {str(data)[:500]}")
-                    return None, error_msg
+                    return None, None, error_msg
                 
                 # Check if content exists
                 choice = data["choices"][0]
@@ -220,41 +220,38 @@ class ModelGenerator:
                     error_msg = f"No 'message' key in choice. Choice keys: {list(choice.keys())}"
                     print(f"API Error for {model_id}: {error_msg}")
                     print(f"  Full choice: {str(choice)[:500]}")
-                    return None, error_msg
+                    return None, None, error_msg
                 
                 message = choice["message"]
                 content = message.get("content", "")
                 reasoning = message.get("reasoning", "")
                 finish_reason = choice.get("finish_reason", "unknown")
-                
+
                 # Check if response was truncated
                 if finish_reason in ["length", "max_tokens", "MAX_TOKENS"]:
                     print(f"  Warning: Response may be truncated (finish_reason: {finish_reason})")
-                
-                # Some models (like Gemini Pro with reasoning) may have content in both fields
-                # or the final answer in content and thinking steps in reasoning
-                # Combine them if both exist, prioritizing content as the final answer
+
+                # Return content and reasoning separately
+                # Content is the main response, reasoning is saved separately
                 if content and reasoning:
-                    # If both exist, combine them (reasoning first for context, then final answer)
-                    combined = f"{reasoning}\n\n---\n\n{content}" if reasoning else content
-                    print(f"  Note: Combined 'reasoning' and 'content' fields for {model_id}")
-                    return combined, None
+                    print(f"  Note: Has both content and reasoning for {model_id}")
+                    return content, reasoning, None
                 elif reasoning and not content:
-                    # Only reasoning exists - this might be the full response or just thinking steps
-                    print(f"  Note: Using 'reasoning' field for {model_id} (content was empty)")
+                    # Only reasoning exists - use it as content (some models do this)
+                    print(f"  Note: Using 'reasoning' field as content for {model_id} (content was empty)")
                     if finish_reason in ["length", "max_tokens", "MAX_TOKENS"]:
                         print(f"  Warning: Reasoning field may be incomplete due to token limit")
-                    return reasoning, None
+                    return reasoning, None, None
                 elif content:
                     # Only content exists (normal case)
-                    return content, None
+                    return content, None, None
                 else:
                     # Neither exists
                     error_msg = f"Empty content in response message (finish_reason: {finish_reason})"
                     print(f"API Error for {model_id}: {error_msg}")
                     print(f"  Message keys: {list(message.keys())}")
                     print(f"  Full choice: {str(choice)[:500]}")
-                    return None, error_msg
+                    return None, None, error_msg
 
             except (requests.exceptions.Timeout, requests.exceptions.ConnectionError, 
                     requests.exceptions.SSLError, OSError, BrokenPipeError) as e:
@@ -262,20 +259,20 @@ class ModelGenerator:
                 if attempt < max_retries - 1:
                     # Exponential backoff: 5s, 10s, 20s, 40s - be patient
                     wait_time = 5 * (2 ** attempt)
-                    print(f"  Network/timeout error for {model_id} (attempt {attempt + 1}/{max_retries}): {type(e)._name_}")
+                    print(f"  Network/timeout error for {model_id} (attempt {attempt + 1}/{max_retries}): {type(e).__name__}")
                     print(f"  Error: {error_msg}")
                     print(f"  Waiting {wait_time} seconds before retry... (some models take a while)")
                     time.sleep(wait_time)
                     continue
                 else:
-                    error_msg_full = f"{type(e)._name_}: {error_msg} (after {max_retries} attempts)"
+                    error_msg_full = f"{type(e).__name__}: {error_msg} (after {max_retries} attempts)"
                     print(f"API Error for {model_id}: {error_msg_full}")
                     print(f"  Skipping this model and continuing...")
-                    return None, error_msg_full
+                    return None, None, error_msg_full
                     
             except requests.exceptions.RequestException as e:
                 error_msg = str(e)
-                error_type = type(e)._name_
+                error_type = type(e).__name__
                 error_detail = None
                 if hasattr(e, 'response') and e.response is not None:
                     try:
@@ -292,7 +289,7 @@ class ModelGenerator:
                     error_msg_full += f" - {error_detail}"
                 
                 print(f"API Error for {model_id}: {error_msg_full}")
-                return None, error_msg_full
+                return None, None, error_msg_full
             except (KeyError, IndexError) as e:
                 error_msg = f"Unexpected API response format: {e}"
                 print(f"API Error for {model_id}: {error_msg}")
@@ -302,17 +299,17 @@ class ModelGenerator:
                         print(f"  Response data sample: {str(data)[:300]}")
                 except:
                     pass
-                return None, error_msg
+                return None, None, error_msg
             except Exception as e:
                 error_msg = str(e)
-                error_type = type(e)._name_
+                error_type = type(e).__name__
                 error_msg_full = f"{error_type}: {error_msg}"
                 print(f"Unexpected error for {model_id}: {error_msg_full}")
                 import traceback
                 print(f"  Traceback: {traceback.format_exc()[-500:]}")  # Last 500 chars of traceback
-                return None, error_msg_full
+                return None, None, error_msg_full
         
-        return None, "Max retries exceeded"
+        return None, None, "Max retries exceeded"
 
     def generate_local(self, model_id: str, prompt: str) -> Optional[str]:
         """Generate response using local Hugging Face model."""
@@ -339,23 +336,23 @@ class ModelGenerator:
             print(f"Local generation error for {model_id}: {e}")
             return None
 
-    def generate(self, model_key: str, prompt: str) -> Tuple[Optional[str], Optional[str]]:
-        """Route generation to appropriate handler. Returns (response, error_message)."""
+    def generate(self, model_key: str, prompt: str) -> Tuple[Optional[str], Optional[str], Optional[str]]:
+        """Route generation to appropriate handler. Returns (content, reasoning, error_message)."""
         if model_key not in MODELS:
-            return None, f"Unknown model: {model_key}"
+            return None, None, f"Unknown model: {model_key}"
 
         model_config = MODELS[model_key]
         model_type = model_config["type"]
         model_id = model_config["id"]
 
         if model_type == "api":
-            result, error = self.generate_api(model_id, prompt)
-            return result, error
+            content, reasoning, error = self.generate_api(model_id, prompt)
+            return content, reasoning, error
         elif model_type == "local":
             result = self.generate_local(model_id, prompt)
-            return result, None if result else f"Local generation failed for {model_id}"
+            return result, None, None if result else f"Local generation failed for {model_id}"
         else:
-            return None, f"Unknown model type: {model_type}"
+            return None, None, f"Unknown model type: {model_type}"
 
 
 def load_tasks() -> List[Dict[str, Any]]:
@@ -411,16 +408,31 @@ def merge_tasks(tasks: List[Dict], existing_data: List[Dict]) -> List[Dict]:
             merged_task["persona"] = task["persona"]
             merged_task["title"] = task["title"]
             merged_task["prompt"] = task["prompt"]
+            # Preserve hierarchical metadata if present
+            if "domain" in task:
+                merged_task["domain"] = task["domain"]
+            if "category" in task:
+                merged_task["category"] = task["category"]
+            if "useCase" in task:
+                merged_task["useCase"] = task["useCase"]
             merged.append(merged_task)
         else:
-            # New task
-            merged.append({
+            # New task - include all fields
+            new_task = {
                 "id": task["id"],
                 "persona": task["persona"],
                 "title": task["title"],
                 "prompt": task["prompt"],
                 "responses": {}
-            })
+            }
+            # Include hierarchical metadata if present
+            if "domain" in task:
+                new_task["domain"] = task["domain"]
+            if "category" in task:
+                new_task["category"] = task["category"]
+            if "useCase" in task:
+                new_task["useCase"] = task["useCase"]
+            merged.append(new_task)
 
     return merged
 
@@ -431,12 +443,19 @@ def main():
     print("Micro Edu Tasks Generator")
     print("=" * 60)
 
+    # Check for test mode (just one task)
+    test_mode = "--test" in sys.argv or "-t" in sys.argv
+
     # Load tasks and existing data
     tasks = load_tasks()
     existing_data = load_existing_data()
     data = merge_tasks(tasks, existing_data)
 
     print(f"\nLoaded {len(tasks)} tasks")
+
+    if test_mode:
+        print("\n*** TEST MODE: Running only first task ***")
+        data = data[:1]
     print(f"Found {len(existing_data)} existing entries")
 
     # Initialize generator
@@ -467,14 +486,14 @@ def main():
     total_generations = 0
     skipped = 0
 
-    def generate_single_model(model_key: str, prompt: str) -> Tuple[str, Optional[str], Optional[str]]:
-        """Generate response for a single model. Returns (model_key, response, error_msg)."""
+    def generate_single_model(model_key: str, prompt: str) -> Tuple[str, Optional[str], Optional[str], Optional[str]]:
+        """Generate response for a single model. Returns (model_key, content, reasoning, error_msg)."""
         try:
-            response, error_msg = generator.generate(model_key, prompt)
-            return model_key, response, error_msg
+            content, reasoning, error_msg = generator.generate(model_key, prompt)
+            return model_key, content, reasoning, error_msg
         except Exception as e:
-            error_msg = f"{type(e)._name_}: {str(e)[:200]}"
-            return model_key, None, error_msg
+            error_msg = f"{type(e).__name__}: {str(e)[:200]}"
+            return model_key, None, None, error_msg
 
     for task_idx, task in enumerate(data):
         print(f"\n[{task_idx + 1}/{len(data)}] Task: {task['title']} ({task['id']})")
@@ -513,9 +532,11 @@ def main():
         if not models_to_generate:
             continue
 
-        # Initialize responses dict if needed
+        # Initialize responses and reasoning dicts if needed
         if "responses" not in task:
             task["responses"] = {}
+        if "reasoning" not in task:
+            task["reasoning"] = {}
 
         # Generate in parallel
         print(f"  Generating {len(models_to_generate)} model(s) in parallel...")
@@ -531,12 +552,17 @@ def main():
                 for future in as_completed(future_to_model):
                     model_key = future_to_model[future]
                     try:
-                        result_key, response, error_msg = future.result()
-                        
-                        if response:
-                            task["responses"][result_key] = response
+                        result_key, content, reasoning, error_msg = future.result()
+
+                        if content:
+                            task["responses"][result_key] = content
                             total_generations += 1
-                            tqdm.write(f"  ✓ {result_key}: Success ({len(response)} chars)")
+                            msg = f"  ✓ {result_key}: Success ({len(content)} chars)"
+                            # Save reasoning separately if present
+                            if reasoning:
+                                task["reasoning"][result_key] = reasoning
+                                msg += f" + reasoning ({len(reasoning)} chars)"
+                            tqdm.write(msg)
                         else:
                             if error_msg:
                                 tqdm.write(f"  ✗ {result_key}: Failed - {error_msg}")
@@ -547,7 +573,7 @@ def main():
                         executor.shutdown(wait=False, cancel_futures=True)
                         raise  # Re-raise to stop the script
                     except Exception as e:
-                        error_msg = f"{type(e)._name_}: {str(e)[:200]}"
+                        error_msg = f"{type(e).__name__}: {str(e)[:200]}"
                         tqdm.write(f"  ✗ {model_key}: Failed - {error_msg}")
                     finally:
                         pbar.update(1)
@@ -563,5 +589,5 @@ def main():
     print("=" * 60)
 
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     main()

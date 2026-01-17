@@ -1,6 +1,33 @@
 import { db, tasks, responses } from '$lib/db';
 import { eq } from 'drizzle-orm';
-import type { Task } from '$lib/types';
+import type { Task, EducatorTasksData } from '$lib/types';
+import { readFileSync, existsSync } from 'fs';
+import { join } from 'path';
+
+// Load educator tasks from JSON file
+export function getEducatorTasks(): EducatorTasksData | null {
+	try {
+		// Try multiple paths for the JSON file
+		const possiblePaths = [
+			join(process.cwd(), 'static', 'data', 'educator_tasks.json'),
+			join(process.cwd(), 'svelte-app', 'static', 'data', 'educator_tasks.json'),
+			join(process.cwd(), '..', 'generator', 'educator_tasks.json'),
+		];
+
+		for (const filePath of possiblePaths) {
+			if (existsSync(filePath)) {
+				const content = readFileSync(filePath, 'utf-8');
+				return JSON.parse(content) as EducatorTasksData;
+			}
+		}
+
+		console.warn('educator_tasks.json not found in any expected location');
+		return null;
+	} catch (err) {
+		console.error('Failed to load educator tasks:', err);
+		return null;
+	}
+}
 
 export async function getAllTasks(): Promise<Task[]> {
 	if (!process.env.DATABASE_URL) {
