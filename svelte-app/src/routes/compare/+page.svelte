@@ -47,13 +47,17 @@
 	});
 
 	// Convert educator task to TaskWithResponses format
+	// Look up responses from database tasks since JSON doesn't have them
 	function educatorTaskToTaskWithResponses(task: EducatorTask): TaskWithResponses {
+		// Find the matching task from the database (which has responses)
+		const dbTask = data.tasks.find(t => t.id === task.id);
+
 		return {
 			id: task.id,
 			title: task.title,
 			description: task.prompt,
 			persona: 'educator',
-			responses: task.responses || {}
+			responses: dbTask?.responses || task.responses || {}
 		};
 	}
 
