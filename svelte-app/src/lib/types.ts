@@ -81,7 +81,34 @@ export const PERSONA_INFO: Record<Persona, { icon: string; image: string; label:
 };
 
 export const MODELS = [
-	// GPT models (newest first)
+	// Google models first
+	{
+		key: 'gemini-pro',
+		name: 'Gemini 3.0 Pro',
+		color: '#f97316' // orange-500
+	},
+	{
+		key: 'gemini',
+		name: 'Gemini 3.0 Flash',
+		color: '#fb923c' // orange-400
+	},
+	{
+		key: 'gemma-3-4b',
+		name: 'Gemma 3 4B',
+		color: '#ea580c' // orange-600
+	},
+	// Anthropic models
+	{
+		key: 'claude-opus',
+		name: 'Claude Opus',
+		color: '#a855f7' // purple-500
+	},
+	{
+		key: 'claude',
+		name: 'Claude 3.5 Sonnet',
+		color: '#c084fc' // purple-400
+	},
+	// OpenAI models
 	{
 		key: 'gpt5.2-medium',
 		name: 'GPT-5.2 Medium',
@@ -101,33 +128,5 @@ export const MODELS = [
 		key: 'gpt4o',
 		name: 'GPT-4o',
 		color: '#059669' // green-600
-	},
-	// Claude models
-	{
-		key: 'claude-opus',
-		name: 'Claude Opus',
-		color: '#a855f7' // purple-500
-	},
-	{
-		key: 'claude',
-		name: 'Claude 3.5 Sonnet',
-		color: '#c084fc' // purple-400
-	},
-	// Gemini models
-	{
-		key: 'gemini-pro',
-		name: 'Gemini 3.0 Pro',
-		color: '#f97316' // orange-500
-	},
-	{
-		key: 'gemini',
-		name: 'Gemini 3.0 Flash',
-		color: '#fb923c' // orange-400
-	},
-	// Open models
-	{
-		key: 'gemma-3-4b',
-		name: 'Gemma 3 4B',
-		color: '#3b82f6' // blue-500
 	}
 ];

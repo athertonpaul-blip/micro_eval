@@ -24,6 +24,7 @@
 	let selectedTask = $state<TaskWithResponses | null>(null);
 	let isLoading = $state(false);
 	let sidebarOpen = $state(false);
+	let sidebarCollapsed = $state(false);
 
 	// Update currentPersona when data.initialPersona changes
 	$effect(() => {
@@ -181,9 +182,9 @@
 			></button>
 		{/if}
 
-		<!-- Sidebar - drawer on mobile, always visible on desktop -->
+		<!-- Sidebar - drawer on mobile, collapsible on desktop -->
 		<div
-			class="fixed md:relative top-0 bottom-0 left-0 z-50 md:z-auto transform transition-transform duration-300 ease-in-out md:transform-none {sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}"
+			class="fixed md:relative top-0 bottom-0 left-0 z-50 md:z-auto transform transition-all duration-300 ease-in-out md:transform-none {sidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'} {sidebarCollapsed ? 'md:w-0 md:overflow-hidden' : ''}"
 		>
 			{#if isEducatorMode}
 				<HierarchicalSidebar
@@ -199,6 +200,18 @@
 				/>
 			{/if}
 		</div>
+
+		<!-- Collapse toggle button (desktop only) -->
+		<button
+			onclick={() => sidebarCollapsed = !sidebarCollapsed}
+			class="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white border border-gray-200 rounded-r-lg p-1.5 shadow-sm hover:bg-gray-50 transition-all {sidebarCollapsed ? 'left-0' : 'left-80'}"
+			aria-label={sidebarCollapsed ? 'Show sidebar' : 'Hide sidebar'}
+			title={sidebarCollapsed ? 'Show tasks' : 'Hide tasks'}
+		>
+			<svg class="w-4 h-4 text-gray-500 transition-transform {sidebarCollapsed ? 'rotate-180' : ''}" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+			</svg>
+		</button>
 
 		<ResponseArena
 			task={selectedTask}
