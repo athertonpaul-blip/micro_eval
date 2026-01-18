@@ -51,10 +51,9 @@
 			Compare AI Model Responses
 		</h1>
 		<p class="text-xl md:text-2xl text-white/80 max-w-2xl mx-auto">
-			See how the latest AI models handle real educational tasks. Choose your role to explore relevant scenarios.
+			See how the latest AI models handle real educational tasks. Choose your role to explore relevant scenarios. Or vote now!
 		</p>
 		<div class="mt-8">
-			<p class="text-white/60 mb-3">Or vote now</p>
 			<a
 				href="/compare?voting=true"
 				class="inline-flex items-center gap-2 bg-white text-dark px-6 py-3 rounded-lg font-semibold hover:bg-white/90 transition-colors"
