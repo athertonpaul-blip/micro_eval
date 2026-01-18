@@ -45,31 +45,29 @@ export async function getAllTasks(): Promise<Task[]> {
 		throw new Error('Database connection not configured');
 	}
 
-	const allTasks = await db.select().from(tasks);
+	// Fetch all tasks and all responses in parallel (2 queries instead of N+1)
+	const [allTasks, allResponses] = await Promise.all([
+		db.select().from(tasks),
+		db.select().from(responses)
+	]);
 
-	const tasksWithResponses: Task[] = [];
-
-	for (const task of allTasks) {
-		const taskResponses = await db
-			.select()
-			.from(responses)
-			.where(eq(responses.taskId, task.id));
-
-		const responseMap: Record<string, string> = {};
-		for (const r of taskResponses) {
-			responseMap[r.modelKey] = r.content;
+	// Group responses by taskId in memory
+	const responsesByTaskId = new Map<string, Record<string, string>>();
+	for (const r of allResponses) {
+		if (!responsesByTaskId.has(r.taskId)) {
+			responsesByTaskId.set(r.taskId, {});
 		}
-
-		tasksWithResponses.push({
-			id: task.id,
-			title: task.title,
-			description: task.description,
-			persona: task.persona as Task['persona'],
-			responses: responseMap // Include all available models dynamically
-		});
+		responsesByTaskId.get(r.taskId)![r.modelKey] = r.content;
 	}
 
-	return tasksWithResponses;
+	// Build tasks with their responses
+	return allTasks.map((task) => ({
+		id: task.id,
+		title: task.title,
+		description: task.description,
+		persona: task.persona as Task['persona'],
+		responses: responsesByTaskId.get(task.id) ?? {}
+	}));
 }
 
 export async function getTaskById(id: string): Promise<Task | null> {
